@@ -1,6 +1,8 @@
 const state = {
   lang: localStorage.getItem("Fiesta-lang") || "zh",
   posts: [],
+  activeMap: "comp-neuro",
+  activeNode: "neuro-basics",
 };
 
 const copy = {
@@ -15,7 +17,7 @@ const copy = {
     introLead: "这里放计算神经科学、类脑智能、计算机专业课、论文阅读、实验复现和一些尚未完全成形的小思考。",
     labLine: "Notes, papers, experiments, and unfinished questions.",
     updateLabel: "最近更新",
-    updateText: "站点结构已经搭好，接下来会逐步补充课程笔记、论文阅读和复现实验。",
+    updateText: "知识地图改成了可互动的卷轴：每个专题像一本书，点开后会展开对应路线。",
     quickLinks: "快速入口",
     allPosts: "全部文章",
     maps: "知识地图",
@@ -26,11 +28,12 @@ const copy = {
     latestTitle: "最近文章",
     latestNote: "内容多起来之后，这里会成为主要的阅读入口。",
     mapsTitle: "知识地图",
-    mapsNote: "这些路线只是起点，会随着课程、论文和实验继续调整。",
+    mapsNote: "点击左侧专题书脊展开路线；悬停或点击地图节点查看它在学习路径中的位置。",
     all: "全部",
     read: "阅读",
     back: "返回文章",
     empty: "这里还没有文章。",
+    currentNode: "当前节点",
   },
   en: {
     tagline: "Notes on computational neuroscience, brain-inspired intelligence, and CS",
@@ -43,7 +46,7 @@ const copy = {
     introLead: "Notes on computational neuroscience, brain-inspired AI, CS courses, paper reading, experiments, and early-stage ideas.",
     labLine: "Notes, papers, experiments, and unfinished questions.",
     updateLabel: "Recent Update",
-    updateText: "The site structure is in place; course notes, paper readings, and reproductions will be added gradually.",
+    updateText: "The knowledge map is now interactive: each topic opens like a book into its own route.",
     quickLinks: "Quick Links",
     allPosts: "All posts",
     maps: "Knowledge maps",
@@ -54,11 +57,12 @@ const copy = {
     latestTitle: "Recent Posts",
     latestNote: "As the archive grows, this will become the main reading entry.",
     mapsTitle: "Knowledge Maps",
-    mapsNote: "These routes are starting points and will change with courses, papers, and experiments.",
+    mapsNote: "Select a topic spine to unfold a route; hover or click nodes to inspect their place in the path.",
     all: "All",
     read: "Read",
     back: "Back to posts",
     empty: "No posts here yet.",
+    currentNode: "Current Node",
   },
 };
 
@@ -125,39 +129,158 @@ const categories = [
   },
 ];
 
-const maps = [
+const mapBooks = [
   {
-    title: { zh: "计算神经科学路线", en: "Computational Neuroscience Route" },
+    id: "comp-neuro",
+    title: { zh: "计算神经科学", en: "Computational Neuroscience" },
+    spine: { zh: "Comp Neuro", en: "Comp Neuro" },
     summary: {
       zh: "从神经科学基础进入神经元模型，再到编码、动力系统、决策和学习。",
       en: "From neuroscience basics to neuron models, coding, dynamics, decision-making, and learning.",
     },
-    route: {
-      zh: ["神经科学基础", "LIF / HH 模型", "突触与可塑性", "神经编码", "群体动力学", "决策与强化学习"],
-      en: ["Neuroscience basics", "LIF / HH models", "Synapses and plasticity", "Neural coding", "Population dynamics", "Decision and RL"],
-    },
+    nodes: [
+      {
+        id: "neuro-basics",
+        x: 13,
+        y: 67,
+        title: { zh: "神经科学基础", en: "Neuroscience basics" },
+        note: { zh: "神经元、突触、回路与行为问题的基础语言。", en: "Neurons, synapses, circuits, and the basic language of behavior." },
+      },
+      {
+        id: "lif-hh",
+        x: 27,
+        y: 42,
+        title: { zh: "LIF / HH 模型", en: "LIF / HH models" },
+        note: { zh: "从简化放电模型到生物物理细节。", en: "From simplified spiking models to biophysical detail." },
+      },
+      {
+        id: "plasticity",
+        x: 45,
+        y: 58,
+        title: { zh: "突触与可塑性", en: "Synapses and plasticity" },
+        note: { zh: "学习规则、STDP 与局部更新机制。", en: "Learning rules, STDP, and local update mechanisms." },
+      },
+      {
+        id: "coding",
+        x: 58,
+        y: 32,
+        title: { zh: "神经编码", en: "Neural coding" },
+        note: { zh: "刺激、表征、噪声与群体编码。", en: "Stimuli, representations, noise, and population coding." },
+      },
+      {
+        id: "dynamics",
+        x: 75,
+        y: 48,
+        title: { zh: "群体动力学", en: "Population dynamics" },
+        note: { zh: "状态空间、吸引子、振荡与网络活动。", en: "State spaces, attractors, oscillations, and network activity." },
+      },
+      {
+        id: "decision-rl",
+        x: 86,
+        y: 23,
+        title: { zh: "决策与强化学习", en: "Decision and RL" },
+        note: { zh: "价值、策略、探索以及与脑机制的连接。", en: "Value, policy, exploration, and links to brain mechanisms." },
+      },
+    ],
   },
   {
-    title: { zh: "类脑智能路线", en: "Brain-inspired AI Route" },
+    id: "brain-ai",
+    title: { zh: "类脑智能", en: "Brain-inspired AI" },
+    spine: { zh: "NeuroAI", en: "NeuroAI" },
     summary: {
       zh: "连接 SNN、局部学习、预测编码、主动推理和神经形态计算。",
       en: "Connect SNNs, local learning, predictive coding, active inference, and neuromorphic computing.",
     },
-    route: {
-      zh: ["SNN 基础", "STDP 与局部学习", "预测编码", "主动推理", "神经形态计算", "脑启发 AI 系统"],
-      en: ["SNN basics", "STDP and local learning", "Predictive coding", "Active inference", "Neuromorphic computing", "Brain-inspired AI systems"],
-    },
+    nodes: [
+      {
+        id: "snn",
+        x: 15,
+        y: 62,
+        title: { zh: "SNN 基础", en: "SNN basics" },
+        note: { zh: "脉冲、膜电位、事件驱动计算。", en: "Spikes, membrane potentials, and event-driven computation." },
+      },
+      {
+        id: "local-learning",
+        x: 31,
+        y: 39,
+        title: { zh: "局部学习", en: "Local learning" },
+        note: { zh: "STDP、三因子规则和非反传学习。", en: "STDP, three-factor rules, and non-backprop learning." },
+      },
+      {
+        id: "predictive-coding",
+        x: 50,
+        y: 51,
+        title: { zh: "预测编码", en: "Predictive coding" },
+        note: { zh: "误差信号、层级模型和生成式解释。", en: "Error signals, hierarchical models, and generative explanations." },
+      },
+      {
+        id: "active-inference",
+        x: 68,
+        y: 29,
+        title: { zh: "主动推理", en: "Active inference" },
+        note: { zh: "感知、行动和自由能原则。", en: "Perception, action, and the free energy principle." },
+      },
+      {
+        id: "neuromorphic",
+        x: 84,
+        y: 55,
+        title: { zh: "神经形态计算", en: "Neuromorphic computing" },
+        note: { zh: "芯片、低功耗和事件驱动硬件。", en: "Chips, low power, and event-driven hardware." },
+      },
+    ],
   },
   {
-    title: { zh: "CS 与实验能力路线", en: "CS and Lab Skills Route" },
+    id: "cs-lab",
+    title: { zh: "CS 与实验能力", en: "CS and Lab Skills" },
+    spine: { zh: "CS Lab", en: "CS Lab" },
     summary: {
       zh: "把计算机基础课和建模实验能力接起来，让理论落到代码和可视化上。",
       en: "Link CS foundations with modeling and experimentation so theory can become code and visualization.",
     },
-    route: {
-      zh: ["数据结构与算法", "操作系统", "计算机网络", "机器学习", "数值仿真", "论文复现"],
-      en: ["Data structures and algorithms", "Operating systems", "Computer networks", "Machine learning", "Numerical simulation", "Paper reproduction"],
-    },
+    nodes: [
+      {
+        id: "dsa",
+        x: 12,
+        y: 43,
+        title: { zh: "数据结构与算法", en: "Data structures and algorithms" },
+        note: { zh: "复杂度、抽象结构和问题分解。", en: "Complexity, abstract structures, and problem decomposition." },
+      },
+      {
+        id: "os",
+        x: 29,
+        y: 65,
+        title: { zh: "操作系统", en: "Operating systems" },
+        note: { zh: "进程、内存、并发与系统边界。", en: "Processes, memory, concurrency, and system boundaries." },
+      },
+      {
+        id: "networks",
+        x: 46,
+        y: 37,
+        title: { zh: "计算机网络", en: "Computer networks" },
+        note: { zh: "协议、分层和分布式通信。", en: "Protocols, layering, and distributed communication." },
+      },
+      {
+        id: "ml",
+        x: 62,
+        y: 58,
+        title: { zh: "机器学习", en: "Machine learning" },
+        note: { zh: "统计学习、优化、泛化和表征。", en: "Statistical learning, optimization, generalization, and representation." },
+      },
+      {
+        id: "simulation",
+        x: 79,
+        y: 32,
+        title: { zh: "数值仿真", en: "Numerical simulation" },
+        note: { zh: "把模型变成可运行、可检验的实验。", en: "Turn models into runnable and testable experiments." },
+      },
+      {
+        id: "reproduction",
+        x: 90,
+        y: 68,
+        title: { zh: "论文复现", en: "Paper reproduction" },
+        note: { zh: "复现实验、定位差异、写清楚失败和改进。", en: "Reproduce experiments, locate gaps, and document failures and improvements." },
+      },
+    ],
   },
 ];
 
@@ -167,6 +290,14 @@ const text = (value) => typeof value === "string" ? value : value[state.lang] ||
 
 function categoryById(id) {
   return categories.find((category) => category.id === id) || categories[0];
+}
+
+function activeBook() {
+  return mapBooks.find((book) => book.id === state.activeMap) || mapBooks[0];
+}
+
+function activeNode(book = activeBook()) {
+  return book.nodes.find((node) => node.id === state.activeNode) || book.nodes[0];
 }
 
 function setLanguage(lang) {
@@ -179,6 +310,22 @@ function setLanguage(lang) {
   });
   render();
 }
+
+function selectMap(id) {
+  const book = mapBooks.find((item) => item.id === id);
+  if (!book) return;
+  state.activeMap = id;
+  state.activeNode = book.nodes[0].id;
+  renderMaps();
+}
+
+function selectNode(id) {
+  state.activeNode = id;
+  renderMaps();
+}
+
+window.selectMap = selectMap;
+window.selectNode = selectNode;
 
 function renderTopicList(topics) {
   return `<ul class="topic-list">${topics[state.lang].map((topic) => `<li>${topic}</li>`).join("")}</ul>`;
@@ -267,22 +414,57 @@ function renderPosts() {
 }
 
 function renderMaps() {
+  const book = activeBook();
+  const node = activeNode(book);
   $("#app").innerHTML = `
     <section>
       <div class="section-header">
         <h1 class="page-title">${t("mapsTitle")}</h1>
         <p class="section-note">${t("mapsNote")}</p>
       </div>
-      <div class="grid">
-        ${maps.map((map) => `
-          <article class="map-card">
-            <h3>${text(map.title)}</h3>
-            <p>${text(map.summary)}</p>
-            <ol class="map-route">
-              ${map.route[state.lang].map((item) => `<li>${item}</li>`).join("")}
-            </ol>
-          </article>
-        `).join("")}
+      <div class="map-library">
+        <aside class="book-shelf" aria-label="${t("mapsTitle")}">
+          ${mapBooks.map((item) => `
+            <button
+              class="book-spine ${item.id === book.id ? "active" : ""}"
+              type="button"
+              onclick="selectMap('${item.id}')"
+              aria-pressed="${item.id === book.id}"
+            >
+              <span>${text(item.spine)}</span>
+              <small>${text(item.title)}</small>
+            </button>
+          `).join("")}
+        </aside>
+        <div class="scroll-map">
+          <div class="construct-shape shape-one"></div>
+          <div class="construct-shape shape-two"></div>
+          <div class="construct-shape shape-three"></div>
+          <div class="map-title">
+            <p class="kicker">${text(book.spine)}</p>
+            <h2>${text(book.title)}</h2>
+            <p>${text(book.summary)}</p>
+          </div>
+          <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <polyline points="${book.nodes.map((item) => `${item.x},${item.y}`).join(" ")}" />
+          </svg>
+          ${book.nodes.map((item, index) => `
+            <button
+              class="map-node ${item.id === node.id ? "active" : ""}"
+              type="button"
+              style="left:${item.x}%; top:${item.y}%"
+              onclick="selectNode('${item.id}')"
+              aria-label="${text(item.title)}"
+            >
+              <span>${index + 1}</span>
+            </button>
+          `).join("")}
+          <aside class="node-card">
+            <p class="kicker">${t("currentNode")}</p>
+            <h3>${text(node.title)}</h3>
+            <p>${text(node.note)}</p>
+          </aside>
+        </div>
       </div>
     </section>
   `;
