@@ -21,26 +21,27 @@
     <title>Fiesta | Notes on brains, computation, and intelligence</title>
   </head>
   <body>
-    <header class="site-header">
-      <div>
+    <div class="site-shell">
+      <aside class="side-nav">
         <a class="site-title" href="#/">Fiesta</a>
         <p data-i18n="tagline">计算神经科学、类脑智能与计算机学习笔记</p>
-      </div>
-      <nav class="main-nav" aria-label="Primary">
-        <a href="#/" data-i18n="navHome">首页</a>
-        <a href="#/posts" data-i18n="navPosts">文章</a>
-        <a href="#/maps" data-i18n="navMaps">知识地图</a>
-        <a href="admin.html" data-i18n="navAdmin">发布</a>
+        <nav aria-label="Primary">
+          <a href="#/" data-i18n="navHome">首页</a>
+          <a href="#/posts" data-i18n="navPosts">文章</a>
+          <a href="#/maps" data-i18n="navMaps">知识地图</a>
+          <a href="admin.html" data-i18n="navAdmin">发布</a>
+          <a href="https://github.com/h4ch1m1" target="_blank" rel="noreferrer">GitHub</a>
+        </nav>
         <button type="button" id="langToggle" aria-label="Switch language">EN</button>
-      </nav>
-    </header>
+      </aside>
 
-    <main id="app" tabindex="-1"></main>
-
-    <footer class="site-footer">
-      <span data-i18n="footerText">由 h4ch1m1 维护。</span>
-      <a href="https://github.com/h4ch1m1" target="_blank" rel="noreferrer">GitHub</a>
-    </footer>
+      <div class="content-shell">
+        <main id="app" tabindex="-1"></main>
+        <footer class="site-footer">
+          <span data-i18n="footerText">由 h4ch1m1 维护。</span>
+        </footer>
+      </div>
+    </div>
 
     <script src="assets/app.js" defer></script>
   </body>

@@ -13,6 +13,9 @@ const copy = {
     footerText: "由 h4ch1m1 维护。",
     introTitle: "一个慢慢整理出来的学习笔记库。",
     introLead: "这里放计算神经科学、类脑智能、计算机专业课、论文阅读、实验复现和一些尚未完全成形的小思考。",
+    labLine: "Notes, papers, experiments, and unfinished questions.",
+    updateLabel: "最近更新",
+    updateText: "站点结构已经搭好，接下来会逐步补充课程笔记、论文阅读和复现实验。",
     quickLinks: "快速入口",
     allPosts: "全部文章",
     maps: "知识地图",
@@ -38,6 +41,9 @@ const copy = {
     footerText: "Maintained by h4ch1m1.",
     introTitle: "A slow-growing notebook for learning.",
     introLead: "Notes on computational neuroscience, brain-inspired AI, CS courses, paper reading, experiments, and early-stage ideas.",
+    labLine: "Notes, papers, experiments, and unfinished questions.",
+    updateLabel: "Recent Update",
+    updateText: "The site structure is in place; course notes, paper readings, and reproductions will be added gradually.",
     quickLinks: "Quick Links",
     allPosts: "All posts",
     maps: "Knowledge maps",
@@ -204,10 +210,19 @@ function renderPost(post) {
 function renderHome() {
   const latest = state.posts.slice(0, 5).map(renderPost).join("");
   $("#app").innerHTML = `
+    <section class="masthead">
+      <p class="kicker">${t("labLine")}</p>
+      <h1>Fiesta</h1>
+      <p>${t("introLead")}</p>
+    </section>
+    <section class="notice">
+      <strong>${t("updateLabel")}</strong>
+      <span>${t("updateText")}</span>
+    </section>
     <section class="intro">
       <div>
-        <h1>${t("introTitle")}</h1>
-        <p>${t("introLead")}</p>
+        <h2>${t("introTitle")}</h2>
+        <p>${t("columnsNote")}</p>
       </div>
       <aside class="quick-links">
         <h2>${t("quickLinks")}</h2>
@@ -222,7 +237,6 @@ function renderHome() {
     <section class="section">
       <div class="section-header">
         <h2>${t("columnsTitle")}</h2>
-        <p class="section-note">${t("columnsNote")}</p>
       </div>
       <div class="grid">${categories.map(renderCategory).join("")}</div>
     </section>
