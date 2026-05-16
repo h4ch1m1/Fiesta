@@ -2,7 +2,7 @@ const state = {
   lang: localStorage.getItem("Fiesta-lang") || "zh",
   posts: [],
   activeMap: "comp-neuro",
-  activeNode: "neuro-basics",
+  activeNode: "model-types",
 };
 
 const copy = {
@@ -13,8 +13,8 @@ const copy = {
     navMaps: "地图",
     navAdmin: "发布",
     footerText: "由 baoxiangcheng / h4ch1m1 维护。",
-    introTitle: "先把纸页摊开。",
-    introLead: "Fiesta 放一些还在路上的东西：课本边上的推导、读论文时留下的疑问、模型跑出来的痕迹，还有偶尔冒出来的连接。",
+    introTitle: "“知道一件事的名字，和知道这件事本身，是两回事。”",
+    introLead: "欢迎来到我的个人网页 Fiesta！这里主要存放我在学习计算机专业课、计算神经科学和类脑智能过程中的记录！",
     labLine: "Notes, traces, experiments, and unfinished hypotheses.",
     updateLabel: "编目方式",
     updateText: "当前先按内容形态和学习阶段组织：基础概念、专题路径、阅读札记、实验记录与开放问题；后续再用标签补充更细的主题连接。",
@@ -24,9 +24,9 @@ const copy = {
     publish: "网页端发布",
     github: "GitHub",
     columnsTitle: "档案室",
-    columnsNote: "先按它们出现的样子摆放：概念、路线、阅读、实验、碎片。等线索足够多，再让标签把暗处的关系勾出来。",
+    columnsNote: "",
     latestTitle: "最近归档",
-    latestNote: "新增文章会先进入这里，像一张仍在扩展的索引卡。",
+    latestNote: "",
     mapsTitle: "知识地图",
     mapsNote: "选择左侧专题书脊展开路线；悬停或点击地图节点，查看它在学习路径中的位置。",
     all: "全部",
@@ -43,7 +43,7 @@ const copy = {
     navMaps: "Maps",
     navAdmin: "Publish",
     footerText: "Maintained by baoxiangcheng / h4ch1m1.",
-    introTitle: "Lay the pages out first.",
+    introTitle: "\"Knowing the name of something and knowing something are not the same thing.\"",
     introLead: "Fiesta keeps things still in motion: derivations in the margin, questions left after papers, traces from models, and the occasional connection that refuses to stay quiet.",
     labLine: "Notes, traces, experiments, and unfinished hypotheses.",
     updateLabel: "Indexing",
@@ -54,7 +54,7 @@ const copy = {
     publish: "Publish from browser",
     github: "GitHub",
     columnsTitle: "Archive Rooms",
-    columnsNote: "The archive begins with how things arrive: concepts, routes, readings, lab records, and fragments. Tags can draw the hidden lines later.",
+    columnsNote: "Richard Feynman",
     latestTitle: "Recent Entries",
     latestNote: "New notes will appear here first, like index cards in an expanding cabinet.",
     mapsTitle: "Knowledge Maps",
@@ -73,7 +73,7 @@ const categories = [
     id: "foundations",
     title: { zh: "基础概念", en: "Concepts" },
     summary: {
-      zh: "概念、定义、推导和课程中的基本结构。它们像档案馆里最早编号的一批索引卡。",
+      zh: "一些我觉得很有意思的小概念！",
       en: "Concepts, definitions, derivations, and course structures: the first indexed cards of the archive.",
     },
     topics: {
@@ -85,7 +85,7 @@ const categories = [
     id: "models",
     title: { zh: "专题路径", en: "Routes" },
     summary: {
-      zh: "把模型、理论和问题连成路线：从神经元模型到动力系统，从预测编码到类脑计算。",
+      zh: "这里会分专题讨论一些学科发展主线！",
       en: "Linked routes across models, theories, and questions: from neuron models to dynamics, predictive coding, and NeuroAI.",
     },
     topics: {
@@ -97,7 +97,7 @@ const categories = [
     id: "papers",
     title: { zh: "阅读札记", en: "Readings" },
     summary: {
-      zh: "论文和书的阅读痕迹：问题、方法、结果、个人理解、疑问和后续线索。",
+      zh: "我引用别人，是为了更好地表达我自己。——蒙田",
       en: "Traces from papers and books: problems, methods, results, interpretations, questions, and follow-up trails.",
     },
     topics: {
@@ -121,7 +121,7 @@ const categories = [
     id: "ideas",
     title: { zh: "碎片想法", en: "Fragments" },
     summary: {
-      zh: "还没有完全归档的小问题、小假设和跨学科联想。它们暂时保留未完成的形状。",
+      zh: "一些小巧思和还没有完全归档的其他内容。",
       en: "Questions, small hypotheses, and cross-disciplinary associations that still keep their unfinished shape.",
     },
     topics: {
@@ -137,98 +137,61 @@ const mapBooks = [
     title: { zh: "计算神经科学", en: "Computational Neuroscience" },
     spine: { zh: "Comp Neuro", en: "Comp Neuro" },
     summary: {
-      zh: "从神经科学基础进入神经元模型，再到编码、动力系统、决策和学习。",
-      en: "From neuroscience basics to neuron models, coding, dynamics, decision-making, and learning.",
+      zh: "参考 Neuromatch Academy 的目录，把建模、统计学习、神经动力学、决策、强化学习和因果连成一张更大的技能树。",
+      en: "A larger skill tree inspired by the Neuromatch Academy syllabus, linking modeling, statistical learning, neural dynamics, decision-making, RL, and causality.",
     },
     nodes: [
-      {
-        id: "neuro-basics",
-        x: 13,
-        y: 67,
-        title: { zh: "神经科学基础", en: "Neuroscience basics" },
-        note: { zh: "神经元、突触、回路与行为问题的基础语言。", en: "Neurons, synapses, circuits, and the basic language of behavior." },
-      },
-      {
-        id: "lif-hh",
-        x: 27,
-        y: 42,
-        title: { zh: "LIF / HH 模型", en: "LIF / HH models" },
-        note: { zh: "从简化放电模型到生物物理细节。", en: "From simplified spiking models to biophysical detail." },
-      },
-      {
-        id: "plasticity",
-        x: 45,
-        y: 58,
-        title: { zh: "突触与可塑性", en: "Synapses and plasticity" },
-        note: { zh: "学习规则、STDP 与局部更新机制。", en: "Learning rules, STDP, and local update mechanisms." },
-      },
-      {
-        id: "coding",
-        x: 58,
-        y: 32,
-        title: { zh: "神经编码", en: "Neural coding" },
-        note: { zh: "刺激、表征、噪声与群体编码。", en: "Stimuli, representations, noise, and population coding." },
-      },
-      {
-        id: "dynamics",
-        x: 75,
-        y: 48,
-        title: { zh: "群体动力学", en: "Population dynamics" },
-        note: { zh: "状态空间、吸引子、振荡与网络活动。", en: "State spaces, attractors, oscillations, and network activity." },
-      },
-      {
-        id: "decision-rl",
-        x: 86,
-        y: 23,
-        title: { zh: "决策与强化学习", en: "Decision and RL" },
-        note: { zh: "价值、策略、探索以及与脑机制的连接。", en: "Value, policy, exploration, and links to brain mechanisms." },
-      },
+      { id: "model-types", x: 8, y: 50, title: { zh: "模型类型", en: "Model Types" }, note: { zh: "先区分描述性、机制性和规范性模型：what、how、why。", en: "Distinguish descriptive, mechanistic, and normative models: what, how, and why." } },
+      { id: "modeling-practice", x: 18, y: 32, title: { zh: "建模实践", en: "Modeling Practice" }, note: { zh: "把问题、假设、数据、控制模型和解释边界放在同一张桌面上。", en: "Place questions, hypotheses, data, control models, and limits of explanation on the same table." } },
+      { id: "model-fitting", x: 23, y: 62, title: { zh: "模型拟合", en: "Model Fitting" }, note: { zh: "回归、MLE、模型比较、置信区间、交叉验证和偏差-方差。", en: "Regression, MLE, model comparison, confidence intervals, cross-validation, and bias-variance." } },
+      { id: "glm", x: 36, y: 46, title: { zh: "广义线性模型", en: "Generalized Linear Models" }, note: { zh: "用 GLM 做神经编码、解码和脉冲发放建模。", en: "Use GLMs for neural encoding, decoding, and spike-train modeling." } },
+      { id: "dimensionality", x: 45, y: 25, title: { zh: "降维", en: "Dimensionality Reduction" }, note: { zh: "PCA、流形和低维结构，寻找群体活动的坐标。", en: "PCA, manifolds, and low-dimensional structure as coordinates for population activity." } },
+      { id: "deep-learning", x: 56, y: 42, title: { zh: "深度学习", en: "Deep Learning" }, note: { zh: "用深度网络拟合复杂编码模型，并和视觉系统做比较。", en: "Fit richer encoding models with deep networks and compare them with the visual system." } },
+      { id: "linear-systems", x: 44, y: 72, title: { zh: "线性系统", en: "Linear Systems" }, note: { zh: "状态空间、稳定性、响应函数和动力系统语言。", en: "State spaces, stability, response functions, and the language of dynamical systems." } },
+      { id: "biological-neurons", x: 60, y: 72, title: { zh: "生物神经元模型", en: "Biological Neuron Models" }, note: { zh: "从 LIF 到 Hodgkin-Huxley，把神经元的电生理细节放回模型里。", en: "From LIF to Hodgkin-Huxley, returning electrophysiological detail to neuron models." } },
+      { id: "dynamic-networks", x: 72, y: 56, title: { zh: "动态网络", en: "Dynamic Networks" }, note: { zh: "Wilson-Cowan、吸引子、振荡和群体活动的网络动力学。", en: "Wilson-Cowan, attractors, oscillations, and network dynamics of population activity." } },
+      { id: "bayesian-decisions", x: 70, y: 28, title: { zh: "贝叶斯决策", en: "Bayesian Decisions" }, note: { zh: "用不确定性、先验、似然和损失函数理解感知与决策。", en: "Use uncertainty, priors, likelihoods, and loss functions to understand perception and decisions." } },
+      { id: "hidden-dynamics", x: 82, y: 36, title: { zh: "隐藏动力学", en: "Hidden Dynamics" }, note: { zh: "HMM、Kalman filter 和随时间变化的潜在状态。", en: "HMMs, Kalman filters, and latent states changing over time." } },
+      { id: "optimal-control", x: 86, y: 66, title: { zh: "最优控制", en: "Optimal Control" }, note: { zh: "把目标、代价、动作和动态系统放进一个控制问题。", en: "Frame goals, costs, actions, and dynamics as a control problem." } },
+      { id: "reinforcement-learning", x: 87, y: 52, title: { zh: "强化学习", en: "Reinforcement Learning" }, note: { zh: "MDP、价值函数、策略、探索和模型化/无模型学习。", en: "MDPs, value functions, policies, exploration, and model-based/model-free learning." } },
+      { id: "network-causality", x: 86, y: 20, title: { zh: "网络因果", en: "Network Causality" }, note: { zh: "扰动、因果图、模型拟合和从相关走向机制解释。", en: "Perturbations, causal graphs, model fitting, and the path from correlation to mechanism." } },
+      { id: "project", x: 62, y: 90, title: { zh: "项目与复现", en: "Projects and Reproduction" }, note: { zh: "把技能树收束到一个可复现的模型、数据分析或小研究问题。", en: "Let the skill tree converge into a reproducible model, analysis, or small research question." } },
+    ],
+    edges: [
+      ["model-types", "modeling-practice"], ["model-types", "model-fitting"], ["modeling-practice", "glm"],
+      ["model-fitting", "glm"], ["glm", "dimensionality"], ["glm", "deep-learning"], ["glm", "linear-systems"],
+      ["linear-systems", "biological-neurons"], ["biological-neurons", "dynamic-networks"], ["dynamic-networks", "optimal-control"],
+      ["model-fitting", "bayesian-decisions"], ["bayesian-decisions", "hidden-dynamics"], ["hidden-dynamics", "network-causality"],
+      ["hidden-dynamics", "reinforcement-learning"], ["optimal-control", "reinforcement-learning"], ["deep-learning", "project"],
+      ["dynamic-networks", "project"], ["reinforcement-learning", "project"],
     ],
   },
   {
     id: "brain-ai",
-    title: { zh: "类脑智能", en: "Brain-inspired AI" },
+    title: { zh: "类脑智能", en: "Brain-inspired Intelligence" },
     spine: { zh: "NeuroAI", en: "NeuroAI" },
     summary: {
-      zh: "连接 SNN、局部学习、预测编码、主动推理和神经形态计算。",
-      en: "Connect SNNs, local learning, predictive coding, active inference, and neuromorphic computing.",
+      zh: "把神经科学里的表征、预测、局部学习、脉冲网络和神经形态计算，组织成一棵通向类脑智能的成长树。",
+      en: "A growth tree from representation, prediction, local learning, spiking networks, and neuromorphic computing toward brain-inspired intelligence.",
     },
     nodes: [
-      {
-        id: "snn",
-        x: 15,
-        y: 62,
-        title: { zh: "SNN 基础", en: "SNN basics" },
-        note: { zh: "脉冲、膜电位、事件驱动计算。", en: "Spikes, membrane potentials, and event-driven computation." },
-      },
-      {
-        id: "local-learning",
-        x: 31,
-        y: 39,
-        title: { zh: "局部学习", en: "Local learning" },
-        note: { zh: "STDP、三因子规则和非反传学习。", en: "STDP, three-factor rules, and non-backprop learning." },
-      },
-      {
-        id: "predictive-coding",
-        x: 50,
-        y: 51,
-        title: { zh: "预测编码", en: "Predictive coding" },
-        note: { zh: "误差信号、层级模型和生成式解释。", en: "Error signals, hierarchical models, and generative explanations." },
-      },
-      {
-        id: "active-inference",
-        x: 68,
-        y: 29,
-        title: { zh: "主动推理", en: "Active inference" },
-        note: { zh: "感知、行动和自由能原则。", en: "Perception, action, and the free energy principle." },
-      },
-      {
-        id: "neuromorphic",
-        x: 84,
-        y: 55,
-        title: { zh: "神经形态计算", en: "Neuromorphic computing" },
-        note: { zh: "芯片、低功耗和事件驱动硬件。", en: "Chips, low power, and event-driven hardware." },
-      },
+      { id: "neural-coding", x: 10, y: 50, title: { zh: "神经编码", en: "Neural Coding" }, note: { zh: "从刺激、脉冲和群体活动里理解表征。", en: "Understand representation through stimuli, spikes, and population activity." } },
+      { id: "population-representation", x: 24, y: 28, title: { zh: "群体表征", en: "Population Representation" }, note: { zh: "把单个神经元扩展到群体、流形和低维轨迹。", en: "Move from single neurons to populations, manifolds, and low-dimensional trajectories." } },
+      { id: "predictive-coding", x: 25, y: 66, title: { zh: "预测编码", en: "Predictive Coding" }, note: { zh: "用误差、层级和生成模型理解感知。", en: "Use error signals, hierarchy, and generative models to think about perception." } },
+      { id: "local-learning", x: 40, y: 42, title: { zh: "局部学习", en: "Local Learning" }, note: { zh: "Hebbian learning、STDP、三因子规则和非反传学习。", en: "Hebbian learning, STDP, three-factor rules, and non-backprop updates." } },
+      { id: "snn", x: 54, y: 60, title: { zh: "脉冲神经网络", en: "Spiking Neural Networks" }, note: { zh: "膜电位、脉冲、事件驱动计算和时序编码。", en: "Membrane potentials, spikes, event-driven computation, and temporal coding." } },
+      { id: "energy-probability", x: 54, y: 24, title: { zh: "能量与概率模型", en: "Energy and Probabilistic Models" }, note: { zh: "从能量函数、采样和不确定性看智能系统。", en: "Look at intelligent systems through energy functions, sampling, and uncertainty." } },
+      { id: "active-inference", x: 68, y: 38, title: { zh: "主动推理", en: "Active Inference" }, note: { zh: "把感知、行动和不确定性放进同一个闭环。", en: "Put perception, action, and uncertainty inside one closed loop." } },
+      { id: "neuromorphic", x: 75, y: 68, title: { zh: "神经形态计算", en: "Neuromorphic Computing" }, note: { zh: "芯片、低功耗、事件驱动硬件和部署约束。", en: "Chips, low power, event-driven hardware, and deployment constraints." } },
+      { id: "embodied-agents", x: 82, y: 48, title: { zh: "具身智能体", en: "Embodied Agents" }, note: { zh: "把身体、环境、行动和学习耦合起来。", en: "Couple body, environment, action, and learning." } },
+      { id: "neuroai-eval", x: 84, y: 25, title: { zh: "类脑评估", en: "NeuroAI Evaluation" }, note: { zh: "比较模型和脑：行为、表征、动力学和可解释性。", en: "Compare models and brains through behavior, representation, dynamics, and interpretability." } },
+    ],
+    edges: [
+      ["neural-coding", "population-representation"], ["neural-coding", "predictive-coding"],
+      ["population-representation", "local-learning"], ["predictive-coding", "local-learning"],
+      ["local-learning", "snn"], ["local-learning", "energy-probability"], ["energy-probability", "active-inference"],
+      ["snn", "neuromorphic"], ["active-inference", "embodied-agents"], ["neuromorphic", "embodied-agents"],
+      ["embodied-agents", "neuroai-eval"], ["population-representation", "neuroai-eval"],
     ],
   },
   {
@@ -236,58 +199,32 @@ const mapBooks = [
     title: { zh: "CS 与实验能力", en: "CS and Lab Skills" },
     spine: { zh: "CS Lab", en: "CS Lab" },
     summary: {
-      zh: "把计算机基础课和建模实验能力接起来，让理论落到代码和可视化上。",
-      en: "Link CS foundations with modeling and experimentation so theory can become code and visualization.",
+      zh: "参考 CS 自学指南和 CSAPP，把工具、编程、算法、系统、网络、数据库、编译、AI/ML 与复现实验能力连起来。",
+      en: "A CS DIY and CSAPP-inspired skill tree connecting tools, programming, algorithms, systems, networks, databases, compilers, AI/ML, and reproducible experiments.",
     },
     nodes: [
-      {
-        id: "dsa",
-        x: 12,
-        y: 43,
-        title: { zh: "数据结构与算法", en: "Data structures and algorithms" },
-        note: { zh: "复杂度、抽象结构和问题分解。", en: "Complexity, abstract structures, and problem decomposition." },
-      },
-      {
-        id: "os",
-        x: 29,
-        y: 65,
-        title: { zh: "操作系统", en: "Operating systems" },
-        note: { zh: "进程、内存、并发与系统边界。", en: "Processes, memory, concurrency, and system boundaries." },
-      },
-      {
-        id: "networks",
-        x: 46,
-        y: 37,
-        title: { zh: "计算机网络", en: "Computer networks" },
-        note: { zh: "协议、分层和分布式通信。", en: "Protocols, layering, and distributed communication." },
-      },
-      {
-        id: "ml",
-        x: 62,
-        y: 58,
-        title: { zh: "机器学习", en: "Machine learning" },
-        note: { zh: "统计学习、优化、泛化和表征。", en: "Statistical learning, optimization, generalization, and representation." },
-      },
-      {
-        id: "simulation",
-        x: 79,
-        y: 32,
-        title: { zh: "数值仿真", en: "Numerical simulation" },
-        note: { zh: "把模型变成可运行、可检验的实验。", en: "Turn models into runnable and testable experiments." },
-      },
-      {
-        id: "reproduction",
-        x: 90,
-        y: 68,
-        title: { zh: "论文复现", en: "Paper reproduction" },
-        note: { zh: "复现实验、定位差异、写清楚失败和改进。", en: "Reproduce experiments, locate gaps, and document failures and improvements." },
-      },
+      { id: "tools", x: 8, y: 52, title: { zh: "工具链", en: "Toolchain" }, note: { zh: "命令行、Git、编辑器、环境管理和调试。", en: "Shell, Git, editors, environment management, and debugging." } },
+      { id: "programming", x: 20, y: 34, title: { zh: "程序设计", en: "Programming" }, note: { zh: "Python、C/C++、工程结构和把想法写成程序的手感。", en: "Python, C/C++, project structure, and the craft of turning ideas into programs." } },
+      { id: "dsa", x: 32, y: 58, title: { zh: "数据结构与算法", en: "Data Structures and Algorithms" }, note: { zh: "抽象数据类型、复杂度、图、动态规划和算法设计。", en: "ADTs, complexity, graphs, dynamic programming, and algorithm design." } },
+      { id: "csapp", x: 45, y: 38, title: { zh: "CSAPP", en: "CSAPP" }, note: { zh: "信息表示、机器级程序、链接、内存层次、I/O、网络和并发。", en: "Representation, machine code, linking, memory hierarchy, I/O, networking, and concurrency." } },
+      { id: "os", x: 58, y: 62, title: { zh: "操作系统", en: "Operating Systems" }, note: { zh: "进程、线程、内存、文件系统、同步和系统边界。", en: "Processes, threads, memory, file systems, synchronization, and system boundaries." } },
+      { id: "networks", x: 70, y: 46, title: { zh: "计算机网络", en: "Computer Networks" }, note: { zh: "分层、协议、TCP/IP、Socket 和网络应用。", en: "Layering, protocols, TCP/IP, sockets, and network applications." } },
+      { id: "databases", x: 70, y: 76, title: { zh: "数据库", en: "Databases" }, note: { zh: "关系模型、查询优化、事务和数据密集型系统。", en: "Relational models, query optimization, transactions, and data-intensive systems." } },
+      { id: "compilers", x: 82, y: 28, title: { zh: "编译与 PL", en: "Compilers and PL" }, note: { zh: "词法语法、类型、IR、优化和程序语言的抽象层。", en: "Lexing, parsing, types, IR, optimization, and PL abstractions." } },
+      { id: "ml-systems", x: 84, y: 58, title: { zh: "AI / ML 系统", en: "AI / ML Systems" }, note: { zh: "机器学习、深度学习、训练管线和系统实现。", en: "Machine learning, deep learning, training pipelines, and systems implementation." } },
+      { id: "reproducible-lab", x: 86, y: 82, title: { zh: "复现实验", en: "Reproducible Lab" }, note: { zh: "记录环境、数据、代码、图表和失败原因，让实验能被重新打开。", en: "Record environments, data, code, figures, and failures so experiments can be reopened." } },
+    ],
+    edges: [
+      ["tools", "programming"], ["programming", "dsa"], ["programming", "csapp"], ["dsa", "csapp"],
+      ["csapp", "os"], ["csapp", "networks"], ["os", "databases"], ["networks", "databases"],
+      ["csapp", "compilers"], ["dsa", "ml-systems"], ["databases", "ml-systems"], ["compilers", "ml-systems"],
+      ["os", "reproducible-lab"], ["ml-systems", "reproducible-lab"], ["databases", "reproducible-lab"],
     ],
   },
 ];
 
 const $ = (selector) => document.querySelector(selector);
-const t = (key) => copy[state.lang][key] || key;
+const t = (key) => Object.prototype.hasOwnProperty.call(copy[state.lang], key) ? copy[state.lang][key] : key;
 const text = (value) => typeof value === "string" ? value : value[state.lang] || value.zh || value.en || "";
 
 function categoryById(id) {
@@ -347,11 +284,12 @@ function renderCategory(category, index) {
 function renderPost(post) {
   const category = categoryById(post.category);
   const tags = (post.tags || []).map((tag) => `<li>${tag}</li>`).join("");
+  const summary = text(post.summary || "");
   return `
     <article class="post-card">
       <p class="meta">${text(category.title)} / ${post.date || ""}</p>
       <h3><a href="#/post/${post.slug}">${text(post.title)}</a></h3>
-      <p>${text(post.summary)}</p>
+      ${summary ? `<p>${summary}</p>` : ""}
       <ul class="tag-list">${tags}</ul>
     </article>
   `;
@@ -383,9 +321,9 @@ function renderHome() {
       </div>
     </section>
     <section class="intro">
-      <div>
+      <div class="quote-block">
         <h2>${t("introTitle")}</h2>
-        <p>${t("columnsNote")}</p>
+        ${t("columnsNote") ? `<p>${t("columnsNote")}</p>` : `<p>——理查德·费曼</p>`}
       </div>
       <aside class="quick-links">
         <h2>${t("quickLinks")}</h2>
@@ -406,7 +344,7 @@ function renderHome() {
     <section class="section">
       <div class="section-header">
         <h2>${t("latestTitle")}</h2>
-        <p class="section-note">${t("latestNote")}</p>
+        ${t("latestNote") ? `<p class="section-note">${t("latestNote")}</p>` : ""}
       </div>
       ${latest || renderEmptyState()}
     </section>
@@ -433,6 +371,10 @@ function renderPosts() {
 function renderMaps() {
   const book = activeBook();
   const node = activeNode(book);
+  const nodeById = Object.fromEntries(book.nodes.map((item) => [item.id, item]));
+  const edges = (book.edges || book.nodes.slice(1).map((item, index) => [book.nodes[index].id, item.id]))
+    .map(([from, to]) => [nodeById[from], nodeById[to]])
+    .filter(([from, to]) => from && to);
   $("#app").innerHTML = `
     <section>
       <div class="section-header">
@@ -463,7 +405,7 @@ function renderMaps() {
             <p>${text(book.summary)}</p>
           </div>
           <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <polyline points="${book.nodes.map((item) => `${item.x},${item.y}`).join(" ")}" />
+            ${edges.map(([from, to]) => `<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" />`).join("")}
           </svg>
           ${book.nodes.map((item, index) => `
             <button
@@ -473,7 +415,8 @@ function renderMaps() {
               onclick="selectNode('${item.id}')"
               aria-label="${text(item.title)}"
             >
-              <span>${index + 1}</span>
+              <span class="node-dot">${index + 1}</span>
+              <strong class="node-label">${text(item.title)}</strong>
             </button>
           `).join("")}
           <aside class="node-card">

@@ -1,7 +1,7 @@
 {
   "name": "Fiesta",
   "short_name": "Fiesta",
-  "description": "A slowly indexed archive of study notes, experiments, reading traces, and unfinished hypotheses.",
+  "description": "Records from learning computer science courses, computational neuroscience, and brain-inspired intelligence.",
   "start_url": "https://h4ch1m1.github.io/Fiesta/",
   "display": "standalone",
   "background_color": "#f8f7f2",

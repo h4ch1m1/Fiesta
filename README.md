@@ -1,6 +1,6 @@
 # Fiesta
 
-Fiesta is a bilingual, slowly indexed study archive for notes, derivations, reading traces, experiments, and unfinished hypotheses from computational neuroscience, brain-inspired intelligence, and computer science.
+Fiesta is baoxiangcheng's personal webpage for records from learning computer science courses, computational neuroscience, and brain-inspired intelligence.
 
 Site URL after deployment:
 
@@ -13,7 +13,7 @@ Site URL after deployment:
 - `Readings`: paper and book notes, including methods, results, questions, and follow-up trails.
 - `Lab`: simulations, reproductions, visual demos, small experiments, and course projects.
 - `Fragments`: provisional ideas, reflections, and open questions.
-- `Maps`: interactive route maps for computational neuroscience, brain-inspired AI, and CS-to-lab skills.
+- `Maps`: interactive module maps for computational neuroscience, brain-inspired intelligence, and CS-to-lab skills.
 
 The archive is organized first by content form and learning stage. Finer thematic tags will be added as the material grows.
 
@@ -34,7 +34,7 @@ Repository:
 
 Description:
 
-`A slowly indexed archive of study notes, experiments, reading traces, and unfinished hypotheses.`
+`Records from learning computer science courses, computational neuroscience, and brain-inspired intelligence.`
 
 Website:
 
