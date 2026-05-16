@@ -1,6 +1,6 @@
 # 欢迎来到 Fiesta
 
-这里是一个面向长期学习的笔记网站。它会同时保留系统性笔记和未完全成形的小思考，让学习过程本身也变成可以回看、比较和生长的材料。
+这里是一个面向长期学习的笔记网站。它会同时保留系统性的课程笔记、论文阅读记录、实验复现，以及还没有完全成形的小思考。
 
 ## 计划中的内容
 
@@ -14,4 +14,4 @@
 
 # Welcome to Fiesta
 
-This site is a long-term learning notebook for computational neuroscience, brain-inspired intelligence, and computer science. It keeps both structured notes and early-stage ideas, because the process of learning is often as valuable as the polished conclusion.
+This site is a long-term learning notebook for computational neuroscience, brain-inspired intelligence, and computer science. It keeps structured notes and early-stage ideas side by side, because the process of learning is often as valuable as the polished conclusion.

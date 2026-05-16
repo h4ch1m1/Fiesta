@@ -6,19 +6,16 @@
     <meta name="robots" content="noindex, nofollow" />
     <meta name="description" content="Browser publishing console for Fiesta. It creates Markdown posts through the GitHub Contents API." />
     <meta name="author" content="h4ch1m1" />
-    <meta name="theme-color" content="#246b62" />
+    <meta name="theme-color" content="#ffffff" />
     <title>Publish | Fiesta</title>
     <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">NN</span>
-        <span>
-          <strong>Fiesta</strong>
-          <small>Publish console</small>
-        </span>
-      </a>
+      <div>
+        <a class="site-title" href="index.html">Fiesta</a>
+        <p>Publish console</p>
+      </div>
       <nav class="main-nav" aria-label="Primary">
         <a href="index.html">Site</a>
         <a href="https://github.com/h4ch1m1" target="_blank" rel="noreferrer">GitHub</a>
@@ -27,11 +24,8 @@
 
     <main class="admin-shell">
       <section class="admin-panel">
-        <div>
-          <p class="eyebrow">Web publishing</p>
-          <h1>Write and publish notes from the browser</h1>
-          <p class="lede">This console commits a Markdown file and updates <code>content/posts.json</code> through the GitHub Contents API. Your token is stored only in this browser's local storage.</p>
-        </div>
+        <h1>Write and publish notes from the browser</h1>
+        <p class="lede">This console commits a Markdown file and updates <code>content/posts.json</code> through the GitHub Contents API. Your token is stored only in this browser's local storage.</p>
 
         <form id="publishForm" class="publish-form">
           <fieldset>
