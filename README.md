@@ -1,19 +1,21 @@
 # Fiesta
 
-Fiesta is h4ch1m1's bilingual GitHub Pages notebook for computational neuroscience, brain-inspired intelligence, computer science foundations, paper reading, experiments, and research ideas.
+Fiesta is a bilingual, slowly indexed study archive for notes, derivations, reading traces, experiments, and unfinished hypotheses from computational neuroscience, brain-inspired intelligence, and computer science.
 
 Site URL after deployment:
 
 `https://h4ch1m1.github.io/Fiesta/`
 
-## Columns
+## Archive Rooms
 
-- `Foundations`: CS courses, neuroscience basics, and machine learning foundations.
-- `Models`: neuron models, network dynamics, neural coding, reinforcement learning, predictive coding, SNNs, and brain-inspired models.
-- `Papers`: paper notes, classic readings, surveys, recent work, and method comparisons.
-- `Experiments`: simulations, reproductions, visualization demos, coding experiments, and course projects.
-- `Ideas`: concept notes, learning reflections, research ideas, interdisciplinary links, and open questions.
-- `Maps`: starter learning maps for computational neuroscience, brain-inspired AI, and CS-to-lab skills.
+- `Concepts`: concepts, definitions, derivations, and course structures.
+- `Routes`: topic paths that connect models, theories, and research questions.
+- `Readings`: paper and book notes, including methods, results, questions, and follow-up trails.
+- `Lab`: simulations, reproductions, visual demos, small experiments, and course projects.
+- `Fragments`: provisional ideas, reflections, and open questions.
+- `Maps`: interactive route maps for computational neuroscience, brain-inspired AI, and CS-to-lab skills.
+
+The archive is organized first by content form and learning stage. Finer thematic tags will be added as the material grows.
 
 ## Features
 
@@ -32,7 +34,7 @@ Repository:
 
 Description:
 
-`Bilingual notes on computational neuroscience, brain-inspired intelligence, CS foundations, papers, experiments, and research ideas.`
+`A slowly indexed archive of study notes, experiments, reading traces, and unfinished hypotheses.`
 
 Website:
 

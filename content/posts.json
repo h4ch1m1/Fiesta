@@ -8,10 +8,10 @@
       "en": "Welcome to Fiesta"
     },
     "summary": {
-      "zh": "这里会记录计算神经科学、类脑智能、计算机基础、论文阅读、实验复现和阶段性思考。",
-      "en": "A home for computational neuroscience, brain-inspired AI, CS foundations, paper notes, experiments, and reflections."
+      "zh": "一张仍在扩展的入口卡：这里会记录计算神经科学、类脑智能、计算机学习、阅读札记、实验记录和阶段性想法。",
+      "en": "An expanding entry card for computational neuroscience, brain-inspired intelligence, CS study, reading notes, lab records, and provisional ideas."
     },
-    "tags": ["computational-neuroscience", "brain-inspired-ai", "learning-log"],
+    "tags": ["computational-neuroscience", "brain-inspired-ai", "learning-archive"],
     "path": "posts/welcome.md"
   }
 ]

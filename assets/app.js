@@ -7,61 +7,63 @@ const state = {
 
 const copy = {
   zh: {
-    tagline: "计算神经科学、类脑智能与计算机学习笔记",
-    navHome: "首页",
-    navPosts: "文章",
-    navMaps: "知识地图",
+    tagline: "一座缓慢编目的学习档案馆",
+    navHome: "入口",
+    navPosts: "档案",
+    navMaps: "地图",
     navAdmin: "发布",
-    footerText: "由 h4ch1m1 维护。",
-    introTitle: "一个慢慢整理出来的学习笔记库。",
-    introLead: "这里放计算神经科学、类脑智能、计算机专业课、论文阅读、实验复现和一些尚未完全成形的小思考。",
-    labLine: "Notes, papers, experiments, and unfinished questions.",
-    updateLabel: "最近更新",
-    updateText: "知识地图改成了可互动的卷轴：每个专题像一本书，点开后会展开对应路线。",
-    quickLinks: "快速入口",
-    allPosts: "全部文章",
+    footerText: "由 baoxiangcheng / h4ch1m1 维护。",
+    introTitle: "先把纸页摊开。",
+    introLead: "Fiesta 放一些还在路上的东西：课本边上的推导、读论文时留下的疑问、模型跑出来的痕迹，还有偶尔冒出来的连接。",
+    labLine: "Notes, traces, experiments, and unfinished hypotheses.",
+    updateLabel: "编目方式",
+    updateText: "当前先按内容形态和学习阶段组织：基础概念、专题路径、阅读札记、实验记录与开放问题；后续再用标签补充更细的主题连接。",
+    quickLinks: "索引",
+    allPosts: "全部档案",
     maps: "知识地图",
     publish: "网页端发布",
     github: "GitHub",
-    columnsTitle: "栏目",
-    columnsNote: "先按内容形态和学习阶段组织，后续用标签补充更细的主题。",
-    latestTitle: "最近文章",
-    latestNote: "内容多起来之后，这里会成为主要的阅读入口。",
+    columnsTitle: "档案室",
+    columnsNote: "先按它们出现的样子摆放：概念、路线、阅读、实验、碎片。等线索足够多，再让标签把暗处的关系勾出来。",
+    latestTitle: "最近归档",
+    latestNote: "新增文章会先进入这里，像一张仍在扩展的索引卡。",
     mapsTitle: "知识地图",
-    mapsNote: "点击左侧专题书脊展开路线；悬停或点击地图节点查看它在学习路径中的位置。",
+    mapsNote: "选择左侧专题书脊展开路线；悬停或点击地图节点，查看它在学习路径中的位置。",
     all: "全部",
     read: "阅读",
-    back: "返回文章",
-    empty: "这里还没有文章。",
+    back: "返回档案",
+    empty: "当前分类下暂时没有文章。",
+    emptyAction: "可以通过发布页面作为访客发表。",
     currentNode: "当前节点",
   },
   en: {
-    tagline: "Notes on computational neuroscience, brain-inspired intelligence, and CS",
-    navHome: "Home",
-    navPosts: "Posts",
+    tagline: "A slowly indexed archive of study",
+    navHome: "Entry",
+    navPosts: "Archive",
     navMaps: "Maps",
     navAdmin: "Publish",
-    footerText: "Maintained by h4ch1m1.",
-    introTitle: "A slow-growing notebook for learning.",
-    introLead: "Notes on computational neuroscience, brain-inspired AI, CS courses, paper reading, experiments, and early-stage ideas.",
-    labLine: "Notes, papers, experiments, and unfinished questions.",
-    updateLabel: "Recent Update",
-    updateText: "The knowledge map is now interactive: each topic opens like a book into its own route.",
-    quickLinks: "Quick Links",
-    allPosts: "All posts",
+    footerText: "Maintained by baoxiangcheng / h4ch1m1.",
+    introTitle: "Lay the pages out first.",
+    introLead: "Fiesta keeps things still in motion: derivations in the margin, questions left after papers, traces from models, and the occasional connection that refuses to stay quiet.",
+    labLine: "Notes, traces, experiments, and unfinished hypotheses.",
+    updateLabel: "Indexing",
+    updateText: "The archive is organized first by content form and learning stage: concepts, topic routes, reading notes, lab records, and open questions. Finer thematic tags will grow around them later.",
+    quickLinks: "Index",
+    allPosts: "All archive",
     maps: "Knowledge maps",
     publish: "Publish from browser",
     github: "GitHub",
-    columnsTitle: "Columns",
-    columnsNote: "The first layer follows content type and learning stage; tags can carry finer topics later.",
-    latestTitle: "Recent Posts",
-    latestNote: "As the archive grows, this will become the main reading entry.",
+    columnsTitle: "Archive Rooms",
+    columnsNote: "The archive begins with how things arrive: concepts, routes, readings, lab records, and fragments. Tags can draw the hidden lines later.",
+    latestTitle: "Recent Entries",
+    latestNote: "New notes will appear here first, like index cards in an expanding cabinet.",
     mapsTitle: "Knowledge Maps",
     mapsNote: "Select a topic spine to unfold a route; hover or click nodes to inspect their place in the path.",
     all: "All",
     read: "Read",
-    back: "Back to posts",
+    back: "Back to archive",
     empty: "No posts here yet.",
+    emptyAction: "You can publish as a visitor from the publishing page.",
     currentNode: "Current Node",
   },
 };
@@ -69,62 +71,62 @@ const copy = {
 const categories = [
   {
     id: "foundations",
-    title: { zh: "Foundations｜基础", en: "Foundations" },
+    title: { zh: "基础概念", en: "Concepts" },
     summary: {
-      zh: "计算机专业课、神经科学基础和机器学习基础。",
-      en: "CS courses, neuroscience basics, and machine learning foundations.",
+      zh: "概念、定义、推导和课程中的基本结构。它们像档案馆里最早编号的一批索引卡。",
+      en: "Concepts, definitions, derivations, and course structures: the first indexed cards of the archive.",
     },
     topics: {
-      zh: ["数据结构", "操作系统", "计算机网络", "神经科学基础", "机器学习"],
-      en: ["Data structures", "Operating systems", "Networks", "Neuroscience", "Machine learning"],
+      zh: ["神经科学基础", "机器学习", "计算机系统", "推导", "术语"],
+      en: ["Neuroscience", "Machine learning", "Systems", "Derivations", "Terms"],
     },
   },
   {
     id: "models",
-    title: { zh: "Models｜模型与理论", en: "Models" },
+    title: { zh: "专题路径", en: "Routes" },
     summary: {
-      zh: "神经元模型、网络动力学、神经编码、强化学习、预测编码、SNN 与类脑模型。",
-      en: "Neuron models, dynamics, neural coding, RL, predictive coding, SNNs, and brain-inspired models.",
+      zh: "把模型、理论和问题连成路线：从神经元模型到动力系统，从预测编码到类脑计算。",
+      en: "Linked routes across models, theories, and questions: from neuron models to dynamics, predictive coding, and NeuroAI.",
     },
     topics: {
-      zh: ["LIF / HH", "网络动力学", "神经编码", "RL", "SNN"],
-      en: ["LIF / HH", "Dynamics", "Neural coding", "RL", "SNN"],
+      zh: ["LIF / HH", "动力系统", "神经编码", "预测编码", "SNN"],
+      en: ["LIF / HH", "Dynamics", "Neural coding", "Predictive coding", "SNN"],
     },
   },
   {
     id: "papers",
-    title: { zh: "Papers｜论文阅读", en: "Papers" },
+    title: { zh: "阅读札记", en: "Readings" },
     summary: {
-      zh: "论文的问题、方法、结果、个人理解、疑问和后续线索。",
-      en: "Problems, methods, results, interpretations, questions, and follow-up trails.",
+      zh: "论文和书的阅读痕迹：问题、方法、结果、个人理解、疑问和后续线索。",
+      en: "Traces from papers and books: problems, methods, results, interpretations, questions, and follow-up trails.",
     },
     topics: {
-      zh: ["经典论文", "综述", "近期论文", "方法比较"],
-      en: ["Classics", "Surveys", "Recent papers", "Methods"],
+      zh: ["经典论文", "综述", "近期论文", "书摘", "方法比较"],
+      en: ["Classics", "Surveys", "Recent papers", "Book notes", "Methods"],
     },
   },
   {
     id: "experiments",
-    title: { zh: "Experiments｜实验与复现", en: "Experiments" },
+    title: { zh: "实验记录", en: "Lab" },
     summary: {
       zh: "模型仿真、论文复现、可视化 demo、小代码实验和课程项目。",
       en: "Simulations, reproductions, visual demos, small experiments, and course projects.",
     },
     topics: {
-      zh: ["仿真", "复现", "可视化", "课程项目"],
-      en: ["Simulation", "Reproduction", "Visualization", "Projects"],
+      zh: ["仿真", "复现", "可视化", "课程项目", "工具"],
+      en: ["Simulation", "Reproduction", "Visualization", "Projects", "Tools"],
     },
   },
   {
     id: "ideas",
-    title: { zh: "Ideas｜小思考", en: "Ideas" },
+    title: { zh: "碎片想法", en: "Fragments" },
     summary: {
-      zh: "概念辨析、学习反思、研究想法、跨学科联想和开放问题。",
-      en: "Concept notes, reflections, research ideas, cross-disciplinary links, and open questions.",
+      zh: "还没有完全归档的小问题、小假设和跨学科联想。它们暂时保留未完成的形状。",
+      en: "Questions, small hypotheses, and cross-disciplinary associations that still keep their unfinished shape.",
     },
     topics: {
-      zh: ["概念", "反思", "想法", "问题"],
-      en: ["Concepts", "Reflections", "Ideas", "Questions"],
+      zh: ["概念辨析", "学习反思", "研究想法", "开放问题"],
+      en: ["Concepts", "Reflections", "Ideas", "Open questions"],
     },
   },
 ];
@@ -331,9 +333,10 @@ function renderTopicList(topics) {
   return `<ul class="topic-list">${topics[state.lang].map((topic) => `<li>${topic}</li>`).join("")}</ul>`;
 }
 
-function renderCategory(category) {
+function renderCategory(category, index) {
   return `
-    <article class="card">
+    <article class="card archive-card archive-card-${index + 1}">
+      <span class="archive-mark">${String(index + 1).padStart(2, "0")}</span>
       <h3><a href="#/posts?category=${category.id}">${text(category.title)}</a></h3>
       <p>${text(category.summary)}</p>
       ${renderTopicList(category.topics)}
@@ -346,7 +349,7 @@ function renderPost(post) {
   const tags = (post.tags || []).map((tag) => `<li>${tag}</li>`).join("");
   return `
     <article class="post-card">
-      <p class="meta">${text(category.title)} · ${post.date || ""}</p>
+      <p class="meta">${text(category.title)} / ${post.date || ""}</p>
       <h3><a href="#/post/${post.slug}">${text(post.title)}</a></h3>
       <p>${text(post.summary)}</p>
       <ul class="tag-list">${tags}</ul>
@@ -354,17 +357,30 @@ function renderPost(post) {
   `;
 }
 
+function renderEmptyState() {
+  return `
+    <div class="empty-state">
+      <p>${t("empty")}</p>
+      <a href="admin.html">${t("emptyAction")}</a>
+    </div>
+  `;
+}
+
 function renderHome() {
   const latest = state.posts.slice(0, 5).map(renderPost).join("");
   $("#app").innerHTML = `
     <section class="masthead">
-      <p class="kicker">${t("labLine")}</p>
-      <h1>Fiesta</h1>
-      <p>${t("introLead")}</p>
-    </section>
-    <section class="notice">
-      <strong>${t("updateLabel")}</strong>
-      <span>${t("updateText")}</span>
+      <div class="construct-panel" aria-hidden="true">
+        <span class="construct-circle"></span>
+        <span class="construct-bar"></span>
+        <span class="construct-block"></span>
+        <span class="construct-line"></span>
+      </div>
+      <div class="masthead-copy">
+        <p class="kicker">${t("labLine")}</p>
+        <h1>Fiesta</h1>
+        <p>${t("introLead")}</p>
+      </div>
     </section>
     <section class="intro">
       <div>
@@ -385,20 +401,21 @@ function renderHome() {
       <div class="section-header">
         <h2>${t("columnsTitle")}</h2>
       </div>
-      <div class="grid">${categories.map(renderCategory).join("")}</div>
+      <div class="grid archive-grid">${categories.map(renderCategory).join("")}</div>
     </section>
     <section class="section">
       <div class="section-header">
         <h2>${t("latestTitle")}</h2>
         <p class="section-note">${t("latestNote")}</p>
       </div>
-      ${latest || `<p>${t("empty")}</p>`}
+      ${latest || renderEmptyState()}
     </section>
   `;
 }
 
 function renderPosts() {
-  const current = new URLSearchParams(location.hash.split("?")[1] || "").get("category") || "all";
+  const query = location.hash.includes("?") ? location.hash.slice(location.hash.indexOf("?") + 1) : "";
+  const current = new URLSearchParams(query).get("category") || "all";
   const filtered = current === "all" ? state.posts : state.posts.filter((post) => post.category === current);
   const filters = [{ id: "all", title: { zh: t("all"), en: t("all") } }, ...categories].map((category) => {
     const href = category.id === "all" ? "#/posts" : `#/posts?category=${category.id}`;
@@ -408,7 +425,7 @@ function renderPosts() {
     <section>
       <h1 class="page-title">${t("navPosts")}</h1>
       <div class="filters">${filters}</div>
-      ${filtered.length ? filtered.map(renderPost).join("") : `<p>${t("empty")}</p>`}
+      ${filtered.length ? filtered.map(renderPost).join("") : renderEmptyState()}
     </section>
   `;
 }
@@ -521,7 +538,7 @@ async function renderArticle(slug) {
     <section class="article-shell">
       <p><a href="#/posts">${t("back")}</a></p>
       <article class="article">
-        <p class="article-meta">${text(category.title)} · ${post.date || ""}</p>
+        <p class="article-meta">${text(category.title)} / ${post.date || ""}</p>
         ${markdownToHtml(markdown)}
       </article>
     </section>
@@ -529,7 +546,8 @@ async function renderArticle(slug) {
 }
 
 function render() {
-  const [route, param] = location.hash.replace(/^#/, "").split("/").filter(Boolean);
+  const cleanHash = location.hash.replace(/^#/, "").split("?")[0];
+  const [route, param] = cleanHash.split("/").filter(Boolean);
   if (!route) return renderHome();
   if (route === "posts") return renderPosts();
   if (route === "maps") return renderMaps();

@@ -1,17 +1,31 @@
-# 欢迎来到 Fiesta
+# Welcome to Fiesta
 
-这里是一个面向长期学习的笔记网站。它会同时保留系统性的课程笔记、论文阅读记录、实验复现，以及还没有完全成形的小思考。
+Fiesta is a slowly indexed archive of study notes, reading traces, experiments, and unfinished hypotheses.
 
-## 计划中的内容
+For now, the archive is organized by content form and learning stage:
 
-- Foundations：计算机专业课、神经科学基础、机器学习基础。
-- Models：神经元模型、网络动力学、神经编码、强化学习、预测编码、SNN 与类脑智能模型。
-- Papers：经典论文、综述和近期论文的阅读记录。
-- Experiments：模型仿真、复现、可视化和课程项目。
-- Ideas：概念辨析、研究想法、跨学科联想和学习反思。
+- Concepts and derivations
+- Topic routes and knowledge maps
+- Reading notes from papers and books
+- Lab records, reproductions, and visual experiments
+- Fragments, questions, and provisional ideas
+
+Finer tags will grow around these rooms later, once enough material has accumulated.
 
 ---
 
-# Welcome to Fiesta
+# 欢迎来到 Fiesta
 
-This site is a long-term learning notebook for computational neuroscience, brain-inspired intelligence, and computer science. It keeps structured notes and early-stage ideas side by side, because the process of learning is often as valuable as the polished conclusion.
+Fiesta 是一个慢慢整理出来的学习笔记库。
+
+这里会收藏我在计算神经科学、类脑智能与计算机学习过程中留下的笔记、推导、阅读痕迹、实验记录，以及一些尚未完成的小想法。
+
+当前它先按内容形态和学习阶段组织：
+
+- 基础概念与推导
+- 专题路径与知识地图
+- 论文和书籍的阅读札记
+- 实验记录、复现和可视化
+- 碎片问题、临时假设和开放想法
+
+等材料逐渐增多之后，标签会补上更细的主题连接。
