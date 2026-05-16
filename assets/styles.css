@@ -633,7 +633,7 @@ select {
 .construct-shape {
   position: absolute;
   pointer-events: none;
-  opacity: 0.72;
+  opacity: 0.34;
 }
 
 .shape-one {
@@ -661,7 +661,7 @@ select {
   width: 62px;
   height: 62px;
   transform: rotate(38deg);
-  background: rgba(32, 32, 32, 0.78);
+  background: rgba(32, 32, 32, 0.34);
   clip-path: polygon(18% 0, 100% 26%, 72% 100%, 0 74%);
 }
 
@@ -705,9 +705,9 @@ select {
 
 .map-lines line {
   fill: none;
-  stroke: rgba(31, 92, 154, 0.42);
-  stroke-width: 0.35;
-  stroke-dasharray: 2 1.5;
+  stroke: rgba(31, 92, 154, 0.18);
+  stroke-width: 0.24;
+  stroke-dasharray: 1.4 2.2;
 }
 
 .map-node {
@@ -715,9 +715,9 @@ select {
   z-index: 3;
   display: flex;
   align-items: center;
-  gap: 7px;
+  gap: 8px;
   width: auto;
-  max-width: 168px;
+  max-width: 190px;
   min-height: 32px;
   border: 0;
   background: transparent;
@@ -734,20 +734,31 @@ select {
   width: 29px;
   height: 29px;
   place-items: center;
-  border: 1px solid var(--link);
+  border: 1px solid rgba(31, 92, 154, 0.72);
   border-radius: 50%;
-  background: #fff;
+  background: rgba(255, 255, 255, 0.86);
   font-size: 12px;
   font-weight: 700;
   transition: transform 140ms ease, background 140ms ease, color 140ms ease, box-shadow 140ms ease;
 }
 
 .node-label {
+  position: absolute;
+  left: 36px;
+  min-width: 82px;
+  max-width: 150px;
+  padding: 4px 6px;
+  border: 1px solid rgba(198, 191, 178, 0.76);
+  background: rgba(255, 254, 250, 0.92);
   color: var(--text);
   font-size: 12px;
   font-weight: 700;
   line-height: 1.25;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
+  opacity: 0;
+  transform: translateX(-6px);
+  pointer-events: none;
+  transition: opacity 140ms ease, transform 140ms ease;
 }
 
 .map-node:hover,
@@ -769,15 +780,17 @@ select {
 .map-node:focus-visible .node-label,
 .map-node.active .node-label {
   color: var(--link);
+  opacity: 1;
+  transform: translateX(0);
 }
 
 .node-card {
   position: absolute;
   left: 38px;
-  bottom: 34px;
+  bottom: 24px;
   z-index: 4;
-  width: min(330px, calc(100% - 76px));
-  padding: 14px 16px;
+  width: min(300px, calc(100% - 76px));
+  padding: 12px 14px;
   border: 1px solid var(--line-dark);
   background: rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(4px);
