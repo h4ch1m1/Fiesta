@@ -1,6 +1,6 @@
 const form = document.querySelector("#publishForm");
 const log = document.querySelector("#publishLog");
-const draftKey = "neuro-notes-admin-draft";
+const draftKey = "Fiesta-admin-draft";
 
 function writeLog(message) {
   log.textContent += `${message}\n`;
@@ -93,8 +93,8 @@ async function publish(values) {
   const token = values.token.trim();
   const post = buildPost(values);
 
-  localStorage.setItem("neuro-notes-admin-settings", JSON.stringify({ owner, repo, branch }));
-  localStorage.setItem("neuro-notes-admin-token", token);
+  localStorage.setItem("Fiesta-admin-settings", JSON.stringify({ owner, repo, branch }));
+  localStorage.setItem("Fiesta-admin-token", token);
 
   writeLog(`Preparing ${post.path}`);
   let indexFile;
@@ -152,8 +152,8 @@ document.querySelector("#clearDraft").addEventListener("click", () => {
   localStorage.removeItem(draftKey);
 });
 
-const settings = JSON.parse(localStorage.getItem("neuro-notes-admin-settings") || "{}");
+const settings = JSON.parse(localStorage.getItem("Fiesta-admin-settings") || "{}");
 const draft = JSON.parse(localStorage.getItem(draftKey) || "{}");
-fillForm({ owner: "h4ch1m1", repo: "neuro-notes", branch: "main", ...settings, ...draft });
-const token = localStorage.getItem("neuro-notes-admin-token");
+fillForm({ owner: "h4ch1m1", repo: "Fiesta", branch: "main", ...settings, ...draft });
+const token = localStorage.getItem("Fiesta-admin-token");
 if (token) form.elements.token.value = token;

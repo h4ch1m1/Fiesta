@@ -1,8 +1,8 @@
 {
-  "name": "Neuro Notes",
-  "short_name": "Neuro Notes",
+  "name": "Fiesta",
+  "short_name": "Fiesta",
   "description": "A bilingual notebook for computational neuroscience, brain-inspired intelligence, CS notes, papers, experiments, and ideas.",
-  "start_url": "https://h4ch1m1.github.io/neuro-notes/",
+  "start_url": "https://h4ch1m1.github.io/Fiesta/",
   "display": "standalone",
   "background_color": "#f7f6f0",
   "theme_color": "#246b62"

@@ -1,4 +1,4 @@
-# 欢迎来到 Neuro Notes
+# 欢迎来到 Fiesta
 
 这里是一个面向长期学习的笔记网站。它会同时保留系统性笔记和未完全成形的小思考，让学习过程本身也变成可以回看、比较和生长的材料。
 
@@ -12,6 +12,6 @@
 
 ---
 
-# Welcome to Neuro Notes
+# Welcome to Fiesta
 
 This site is a long-term learning notebook for computational neuroscience, brain-inspired intelligence, and computer science. It keeps both structured notes and early-stage ideas, because the process of learning is often as valuable as the polished conclusion.

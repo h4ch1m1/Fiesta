@@ -4,7 +4,7 @@
 
 Recommended repository name:
 
-`neuro-notes`
+`Fiesta`
 
 Recommended GitHub repository description:
 
@@ -12,7 +12,7 @@ Recommended GitHub repository description:
 
 Recommended website URL:
 
-`https://h4ch1m1.github.io/neuro-notes/`
+`https://h4ch1m1.github.io/Fiesta/`
 
 Recommended topics:
 
@@ -28,7 +28,7 @@ Use these Pages settings:
 
 ## Fine-Grained Token for Browser Publishing
 
-Create a fine-grained personal access token with access limited to `h4ch1m1/neuro-notes`.
+Create a fine-grained personal access token with access limited to `h4ch1m1/Fiesta`.
 
 Required repository permission:
 
@@ -40,12 +40,12 @@ Then open `admin.html`, enter the token, and publish Markdown articles from the 
 
 Main site:
 
-`https://h4ch1m1.github.io/neuro-notes/`
+`https://h4ch1m1.github.io/Fiesta/`
 
 Publishing console:
 
-`https://h4ch1m1.github.io/neuro-notes/admin.html`
+`https://h4ch1m1.github.io/Fiesta/admin.html`
 
 Personal entry page:
 
-`https://h4ch1m1.github.io/`
+`https://h4ch1m1.github.io/personal-page/`

@@ -1,10 +1,10 @@
-# Neuro Notes
+# Fiesta
 
-Neuro Notes is h4ch1m1's bilingual GitHub Pages notebook for computational neuroscience, brain-inspired intelligence, computer science foundations, paper reading, experiments, and research ideas.
+Fiesta is h4ch1m1's bilingual GitHub Pages notebook for computational neuroscience, brain-inspired intelligence, computer science foundations, paper reading, experiments, and research ideas.
 
 Site URL after deployment:
 
-`https://h4ch1m1.github.io/neuro-notes/`
+`https://h4ch1m1.github.io/Fiesta/`
 
 ## Columns
 
@@ -28,7 +28,7 @@ Site URL after deployment:
 
 Repository:
 
-`h4ch1m1/neuro-notes`
+`h4ch1m1/Fiesta`
 
 Description:
 
@@ -36,21 +36,21 @@ Description:
 
 Website:
 
-`https://h4ch1m1.github.io/neuro-notes/`
+`https://h4ch1m1.github.io/Fiesta/`
 
 Topics:
 
-`computational-neuroscience`, `brain-inspired-ai`, `machine-learning`, `spiking-neural-networks`, `computer-science`, `github-pages`, `notes`
+`computational-neuroscience`, `brain-inspired-ai`, `machine-learning`, `spiking-neural-networks`, `computer-science`, `github-pages`, `notes`, `fiesta`
 
 ## Deploy
 
-1. Create the repository `h4ch1m1/neuro-notes` on GitHub.
+1. Create the repository `h4ch1m1/Fiesta` on GitHub.
 2. Push this folder to the `main` branch.
 3. In GitHub repository settings, enable Pages:
    - Source: `Deploy from a branch`
    - Branch: `main`
    - Folder: `/root`
-4. Open `https://h4ch1m1.github.io/neuro-notes/`.
+4. Open `https://h4ch1m1.github.io/Fiesta/`.
 
 ## Browser Publishing
 

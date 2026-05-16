@@ -1,5 +1,5 @@
 const state = {
-  lang: localStorage.getItem("neuro-notes-lang") || "zh",
+  lang: localStorage.getItem("Fiesta-lang") || "zh",
   posts: [],
 };
 
@@ -162,7 +162,7 @@ const text = (value) => typeof value === "string" ? value : value[state.lang] ||
 
 function setLanguage(lang) {
   state.lang = lang;
-  localStorage.setItem("neuro-notes-lang", lang);
+  localStorage.setItem("Fiesta-lang", lang);
   document.documentElement.lang = lang === "zh" ? "zh-CN" : "en";
   $("#langToggle").textContent = lang === "zh" ? "EN" : "中";
   document.querySelectorAll("[data-i18n]").forEach((node) => {
