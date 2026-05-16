@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Publish | Neuro Notes</title>
+    <link rel="stylesheet" href="assets/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">NN</span>
+        <span>
+          <strong>Neuro Notes</strong>
+          <small>Publish console</small>
+        </span>
+      </a>
+      <nav class="main-nav" aria-label="Primary">
+        <a href="index.html">Site</a>
+        <a href="https://github.com/h4ch1m1" target="_blank" rel="noreferrer">GitHub</a>
+      </nav>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-panel">
+        <div>
+          <p class="eyebrow">Web publishing</p>
+          <h1>Write and publish notes from the browser</h1>
+          <p class="lede">This console commits a Markdown file and updates <code>content/posts.json</code> through the GitHub Contents API. Your token is stored only in this browser's local storage.</p>
+        </div>
+
+        <form id="publishForm" class="publish-form">
+          <fieldset>
+            <legend>Repository</legend>
+            <label>
+              Owner
+              <input name="owner" value="h4ch1m1" autocomplete="username" required />
+            </label>
+            <label>
+              Repository
+              <input name="repo" value="neuro-notes" required />
+            </label>
+            <label>
+              Branch
+              <input name="branch" value="main" required />
+            </label>
+            <label>
+              GitHub token
+              <input name="token" type="password" placeholder="github_pat_..." autocomplete="off" required />
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Article</legend>
+            <div class="form-grid">
+              <label>
+                中文标题
+                <input name="titleZh" placeholder="例如：LIF 神经元模型入门" required />
+              </label>
+              <label>
+                English title
+                <input name="titleEn" placeholder="e.g. An Introduction to LIF Neurons" />
+              </label>
+              <label>
+                Slug
+                <input name="slug" placeholder="lif-neuron-intro" required />
+              </label>
+              <label>
+                Category
+                <select name="category" required>
+                  <option value="foundations">Foundations</option>
+                  <option value="models">Models</option>
+                  <option value="papers">Papers</option>
+                  <option value="experiments">Experiments</option>
+                  <option value="ideas">Ideas</option>
+                </select>
+              </label>
+            </div>
+            <label>
+              Tags
+              <input name="tags" placeholder="SNN, computational-neuroscience, CS" />
+            </label>
+            <label>
+              摘要 / Summary
+              <textarea name="summary" rows="3" placeholder="A short bilingual-friendly summary." required></textarea>
+            </label>
+            <label>
+              Markdown
+              <textarea name="body" rows="16" placeholder="# Title&#10;&#10;Write your note here..." required></textarea>
+            </label>
+          </fieldset>
+
+          <div class="form-actions">
+            <button type="submit">Publish to GitHub</button>
+            <button type="button" id="saveDraft">Save draft locally</button>
+            <button type="button" id="clearDraft">Clear</button>
+          </div>
+        </form>
+        <pre id="publishLog" class="publish-log" aria-live="polite"></pre>
+      </section>
+    </main>
+
+    <script src="assets/admin.js" defer></script>
+  </body>
+</html>

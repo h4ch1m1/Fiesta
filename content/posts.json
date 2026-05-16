@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "welcome",
+    "category": "ideas",
+    "date": "2026-05-16",
+    "title": {
+      "zh": "欢迎来到 Neuro Notes",
+      "en": "Welcome to Neuro Notes"
+    },
+    "summary": {
+      "zh": "这里会记录计算神经科学、类脑智能、计算机基础、论文阅读、实验复现和阶段性思考。",
+      "en": "A home for computational neuroscience, brain-inspired AI, CS foundations, paper notes, experiments, and reflections."
+    },
+    "tags": ["computational-neuroscience", "brain-inspired-ai", "learning-log"],
+    "path": "posts/welcome.md"
+  }
+]
