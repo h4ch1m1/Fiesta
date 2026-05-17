@@ -409,15 +409,14 @@ function renderPosts() {
       >${text(track.title)}</button>
     `;
   }).join("");
-  const categoryLinks = [{ id: "all", title: { zh: t("all"), en: t("all") } }, ...categories].map((category, index) => {
-    const prefix = category.id === "all" ? "" : `${String(index).padStart(2, "0")} `;
+  const categoryLinks = [{ id: "all", title: { zh: t("all"), en: t("all") } }, ...categories].map((category) => {
     return `
       <button
         class="filter-button ${currentCategory === category.id ? "active" : ""}"
         type="button"
         onclick="selectPostCategory('${category.id}')"
         aria-pressed="${currentCategory === category.id}"
-      >${prefix}${text(category.title)}</button>
+      >${text(category.title)}</button>
     `;
   }).join("");
   $("#app").innerHTML = `

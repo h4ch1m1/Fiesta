@@ -192,7 +192,7 @@ select {
   align-self: end;
   position: relative;
   z-index: 2;
-  padding-bottom: 8px;
+  padding-bottom: 42px;
 }
 
 .construct-panel {
@@ -506,7 +506,7 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin: 12px 0 18px;
+  margin: 12px 0 18px -10px;
   padding: 10px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
@@ -528,18 +528,20 @@ select {
 
 .posts-layout {
   display: grid;
-  grid-template-columns: 172px minmax(0, 1fr);
-  gap: 30px;
+  grid-template-columns: 150px minmax(0, 1fr);
+  gap: 34px;
   align-items: start;
-  margin-left: -34px;
+  margin-left: -52px;
 }
 
 .posts-track-nav {
   position: sticky;
-  top: 34px;
+  top: 48px;
   display: grid;
-  gap: 10px;
-  padding: 14px;
+  gap: 12px;
+  min-height: 390px;
+  margin-top: 18px;
+  padding: 16px 12px;
   border: 1px solid var(--line-dark);
   background:
     radial-gradient(circle at 12px 12px, rgba(32, 32, 30, 0.055) 1px, transparent 1.3px) 0 0 / 16px 16px,
