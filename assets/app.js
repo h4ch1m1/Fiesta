@@ -1,6 +1,7 @@
 const state = {
   lang: localStorage.getItem("Fiesta-lang") || "zh",
   posts: [],
+  activeTrack: "all",
   activeMap: "comp-neuro",
   activeNode: "model-types",
 };
@@ -287,8 +288,14 @@ function selectNode(id) {
   renderMaps();
 }
 
+function selectTrack(id) {
+  state.activeTrack = id;
+  renderPosts();
+}
+
 window.selectMap = selectMap;
 window.selectNode = selectNode;
+window.selectTrack = selectTrack;
 
 function renderTopicList(topics) {
   return `<ul class="topic-list">${topics[state.lang].map((topic) => `<li>${topic}</li>`).join("")}</ul>`;
@@ -298,7 +305,7 @@ function renderCategory(category, index) {
   return `
     <article class="card archive-card archive-card-${index + 1}">
       <span class="archive-mark">${String(index + 1).padStart(2, "0")}</span>
-      <h3><a href="#/posts?category=${category.id}">${text(category.title)}</a></h3>
+      <h3>${text(category.title)}</h3>
       <p>${text(category.summary)}</p>
       ${renderTopicList(category.topics)}
     </article>
@@ -377,30 +384,20 @@ function renderHome() {
 }
 
 function renderPosts() {
-  const query = location.hash.includes("?") ? location.hash.slice(location.hash.indexOf("?") + 1) : "";
-  const params = new URLSearchParams(query);
-  const current = params.get("category") || "all";
-  const currentTrack = params.get("track") || "all";
-  const makePostsHref = (next = {}) => {
-    const category = next.category ?? current;
-    const track = next.track ?? currentTrack;
-    const nextParams = new URLSearchParams();
-    if (category !== "all") nextParams.set("category", category);
-    if (track !== "all") nextParams.set("track", track);
-    const queryString = nextParams.toString();
-    return queryString ? `#/posts?${queryString}` : "#/posts";
-  };
+  const currentTrack = state.activeTrack || "all";
   const filtered = state.posts.filter((post) => {
-    const categoryMatch = current === "all" || post.category === current;
     const normalizedTrack = post.track || "other";
-    const trackMatch = currentTrack === "all" || normalizedTrack === currentTrack;
-    return categoryMatch && trackMatch;
+    return currentTrack === "all" || normalizedTrack === currentTrack;
   });
   const trackLinks = [{ id: "all", title: { zh: t("trackAll"), en: t("trackAll") } }, ...tracks].map((track) => {
-    return `<a class="track-button ${currentTrack === track.id ? "active" : ""}" href="${makePostsHref({ track: track.id })}">${text(track.title)}</a>`;
-  }).join("");
-  const filters = [{ id: "all", title: { zh: t("all"), en: t("all") } }, ...categories].map((category) => {
-    return `<a class="filter-button ${current === category.id ? "active" : ""}" href="${makePostsHref({ category: category.id })}">${text(category.title)}</a>`;
+    return `
+      <button
+        class="track-button ${currentTrack === track.id ? "active" : ""}"
+        type="button"
+        onclick="selectTrack('${track.id}')"
+        aria-pressed="${currentTrack === track.id}"
+      >${text(track.title)}</button>
+    `;
   }).join("");
   $("#app").innerHTML = `
     <section class="posts-layout">
@@ -410,7 +407,6 @@ function renderPosts() {
       </aside>
       <div class="posts-main">
         <h1 class="page-title">${t("navPosts")}</h1>
-        <div class="filters">${filters}</div>
         ${filtered.length ? filtered.map(renderPost).join("") : renderEmptyState()}
       </div>
     </section>
