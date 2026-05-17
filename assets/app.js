@@ -2,6 +2,7 @@ const state = {
   lang: localStorage.getItem("Fiesta-lang") || "zh",
   posts: [],
   activeTrack: "all",
+  activeCategory: "all",
   activeMap: "comp-neuro",
   activeNode: "model-types",
 };
@@ -293,9 +294,15 @@ function selectTrack(id) {
   renderPosts();
 }
 
+function selectPostCategory(id) {
+  state.activeCategory = id;
+  renderPosts();
+}
+
 window.selectMap = selectMap;
 window.selectNode = selectNode;
 window.selectTrack = selectTrack;
+window.selectPostCategory = selectPostCategory;
 
 function renderTopicList(topics) {
   return `<ul class="topic-list">${topics[state.lang].map((topic) => `<li>${topic}</li>`).join("")}</ul>`;
@@ -385,9 +392,12 @@ function renderHome() {
 
 function renderPosts() {
   const currentTrack = state.activeTrack || "all";
+  const currentCategory = state.activeCategory || "all";
   const filtered = state.posts.filter((post) => {
     const normalizedTrack = post.track || "other";
-    return currentTrack === "all" || normalizedTrack === currentTrack;
+    const trackMatch = currentTrack === "all" || normalizedTrack === currentTrack;
+    const categoryMatch = currentCategory === "all" || post.category === currentCategory;
+    return trackMatch && categoryMatch;
   });
   const trackLinks = [{ id: "all", title: { zh: t("trackAll"), en: t("trackAll") } }, ...tracks].map((track) => {
     return `
@@ -399,6 +409,17 @@ function renderPosts() {
       >${text(track.title)}</button>
     `;
   }).join("");
+  const categoryLinks = [{ id: "all", title: { zh: t("all"), en: t("all") } }, ...categories].map((category, index) => {
+    const prefix = category.id === "all" ? "" : `${String(index).padStart(2, "0")} `;
+    return `
+      <button
+        class="filter-button ${currentCategory === category.id ? "active" : ""}"
+        type="button"
+        onclick="selectPostCategory('${category.id}')"
+        aria-pressed="${currentCategory === category.id}"
+      >${prefix}${text(category.title)}</button>
+    `;
+  }).join("");
   $("#app").innerHTML = `
     <section class="posts-layout">
       <aside class="posts-track-nav" aria-label="${t("tracksTitle")}">
@@ -407,6 +428,7 @@ function renderPosts() {
       </aside>
       <div class="posts-main">
         <h1 class="page-title">${t("navPosts")}</h1>
+        <div class="filters">${categoryLinks}</div>
         ${filtered.length ? filtered.map(renderPost).join("") : renderEmptyState()}
       </div>
     </section>

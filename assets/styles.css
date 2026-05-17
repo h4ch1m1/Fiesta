@@ -513,7 +513,12 @@ select {
 }
 
 .filter-button {
+  border: 0;
+  background: transparent;
   color: var(--muted);
+  cursor: pointer;
+  padding: 0;
+  text-align: left;
 }
 
 .filter-button.active {
@@ -523,9 +528,10 @@ select {
 
 .posts-layout {
   display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-  gap: 28px;
+  grid-template-columns: 172px minmax(0, 1fr);
+  gap: 30px;
   align-items: start;
+  margin-left: -34px;
 }
 
 .posts-track-nav {
@@ -1007,6 +1013,7 @@ textarea {
   .map-library,
   .posts-layout {
     grid-template-columns: 1fr;
+    margin-left: 0;
   }
 
   .posts-track-nav {
