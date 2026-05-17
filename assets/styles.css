@@ -521,6 +521,45 @@ select {
   font-weight: 700;
 }
 
+.posts-layout {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.posts-track-nav {
+  position: sticky;
+  top: 34px;
+  display: grid;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid var(--line-dark);
+  background:
+    radial-gradient(circle at 12px 12px, rgba(32, 32, 30, 0.055) 1px, transparent 1.3px) 0 0 / 16px 16px,
+    var(--paper);
+}
+
+.posts-track-nav h2 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.track-button {
+  display: block;
+  padding: 9px 10px;
+  border-left: 3px solid transparent;
+  color: var(--muted);
+}
+
+.track-button:hover,
+.track-button.active {
+  border-left-color: var(--link);
+  background: rgba(35, 93, 128, 0.07);
+  color: var(--text);
+  text-decoration: none;
+}
+
 .map-route {
   margin: 10px 0 0;
   padding-left: 22px;
@@ -960,8 +999,31 @@ textarea {
   .intro,
   .grid,
   .form-grid,
-  .map-library {
+  .map-library,
+  .posts-layout {
     grid-template-columns: 1fr;
+  }
+
+  .posts-track-nav {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .posts-track-nav h2 {
+    width: 100%;
+  }
+
+  .track-button {
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+  }
+
+  .track-button:hover,
+  .track-button.active {
+    border-left-color: transparent;
+    border-bottom-color: var(--link);
   }
 
   .masthead {

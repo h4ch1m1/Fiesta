@@ -30,6 +30,8 @@ const copy = {
     mapsTitle: "知识地图",
     mapsNote: "选择左侧专题书脊展开路线；悬停或点击地图节点，查看它在学习路径中的位置。",
     all: "全部",
+    tracksTitle: "分类",
+    trackAll: "全部文章",
     read: "阅读",
     back: "返回档案",
     empty: "当前分类下暂时没有文章。",
@@ -60,6 +62,8 @@ const copy = {
     mapsTitle: "Knowledge Maps",
     mapsNote: "Select a topic spine to unfold a route; hover or click nodes to inspect their place in the path.",
     all: "All",
+    tracksTitle: "Tracks",
+    trackAll: "All posts",
     read: "Read",
     back: "Back to archive",
     empty: "No posts here yet.",
@@ -130,6 +134,29 @@ const categories = [
     },
   },
 ];
+
+const tracks = [
+  {
+    id: "computational-neuroscience",
+    title: { zh: "计算神经科学", en: "Computational Neuroscience" },
+  },
+  {
+    id: "computer-science",
+    title: { zh: "计算机专业课", en: "Computer Science Courses" },
+  },
+  {
+    id: "neuroai",
+    title: { zh: "NeuroAI", en: "NeuroAI" },
+  },
+  {
+    id: "other",
+    title: { zh: "其他 / 没有", en: "Other / None" },
+  },
+];
+
+function trackById(id) {
+  return tracks.find((track) => track.id === id);
+}
 
 const mapBooks = [
   {
@@ -280,11 +307,12 @@ function renderCategory(category, index) {
 
 function renderPost(post) {
   const category = categoryById(post.category);
+  const track = trackById(post.track);
   const tags = (post.tags || []).map((tag) => `<li>${tag}</li>`).join("");
   const summary = text(post.summary || "");
   return `
     <article class="post-card">
-      <p class="meta">${text(category.title)} / ${post.date || ""}</p>
+      <p class="meta">${track ? `${text(track.title)} / ` : ""}${text(category.title)} / ${post.date || ""}</p>
       <h3><a href="#/post/${post.slug}">${text(post.title)}</a></h3>
       ${summary ? `<p>${summary}</p>` : ""}
       <ul class="tag-list">${tags}</ul>
@@ -350,17 +378,41 @@ function renderHome() {
 
 function renderPosts() {
   const query = location.hash.includes("?") ? location.hash.slice(location.hash.indexOf("?") + 1) : "";
-  const current = new URLSearchParams(query).get("category") || "all";
-  const filtered = current === "all" ? state.posts : state.posts.filter((post) => post.category === current);
+  const params = new URLSearchParams(query);
+  const current = params.get("category") || "all";
+  const currentTrack = params.get("track") || "all";
+  const makePostsHref = (next = {}) => {
+    const category = next.category ?? current;
+    const track = next.track ?? currentTrack;
+    const nextParams = new URLSearchParams();
+    if (category !== "all") nextParams.set("category", category);
+    if (track !== "all") nextParams.set("track", track);
+    const queryString = nextParams.toString();
+    return queryString ? `#/posts?${queryString}` : "#/posts";
+  };
+  const filtered = state.posts.filter((post) => {
+    const categoryMatch = current === "all" || post.category === current;
+    const normalizedTrack = post.track || "other";
+    const trackMatch = currentTrack === "all" || normalizedTrack === currentTrack;
+    return categoryMatch && trackMatch;
+  });
+  const trackLinks = [{ id: "all", title: { zh: t("trackAll"), en: t("trackAll") } }, ...tracks].map((track) => {
+    return `<a class="track-button ${currentTrack === track.id ? "active" : ""}" href="${makePostsHref({ track: track.id })}">${text(track.title)}</a>`;
+  }).join("");
   const filters = [{ id: "all", title: { zh: t("all"), en: t("all") } }, ...categories].map((category) => {
-    const href = category.id === "all" ? "#/posts" : `#/posts?category=${category.id}`;
-    return `<a class="filter-button ${current === category.id ? "active" : ""}" href="${href}">${text(category.title)}</a>`;
+    return `<a class="filter-button ${current === category.id ? "active" : ""}" href="${makePostsHref({ category: category.id })}">${text(category.title)}</a>`;
   }).join("");
   $("#app").innerHTML = `
-    <section>
-      <h1 class="page-title">${t("navPosts")}</h1>
-      <div class="filters">${filters}</div>
-      ${filtered.length ? filtered.map(renderPost).join("") : renderEmptyState()}
+    <section class="posts-layout">
+      <aside class="posts-track-nav" aria-label="${t("tracksTitle")}">
+        <h2>${t("tracksTitle")}</h2>
+        ${trackLinks}
+      </aside>
+      <div class="posts-main">
+        <h1 class="page-title">${t("navPosts")}</h1>
+        <div class="filters">${filters}</div>
+        ${filtered.length ? filtered.map(renderPost).join("") : renderEmptyState()}
+      </div>
     </section>
   `;
 }
@@ -472,13 +524,14 @@ async function renderArticle(slug) {
     return;
   }
   const category = categoryById(post.category);
+  const track = trackById(post.track);
   const response = await fetch(post.path);
   const markdown = await response.text();
   $("#app").innerHTML = `
     <section class="article-shell">
       <p><a href="#/posts">${t("back")}</a></p>
       <article class="article">
-        <p class="article-meta">${text(category.title)} / ${post.date || ""}</p>
+        <p class="article-meta">${track ? `${text(track.title)} / ` : ""}${text(category.title)} / ${post.date || ""}</p>
         ${markdownToHtml(markdown)}
       </article>
     </section>

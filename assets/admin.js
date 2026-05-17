@@ -72,6 +72,7 @@ function buildPost(values) {
   return {
     slug,
     category: values.category,
+    track: values.track || "other",
     date,
     title: {
       zh: values.titleZh,
