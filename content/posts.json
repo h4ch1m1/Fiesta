@@ -1,5 +1,24 @@
 [
   {
+    "slug": "compiler-principles-chat1",
+    "category": "foundations",
+    "track": "computer-science",
+    "date": "2026-05-19",
+    "title": {
+      "zh": "编译原理笔记 1：文法与语言基础",
+      "en": "Compiler Principles Note 1: Grammar and Language Basics"
+    },
+    "summary": {
+      "zh": "整理编译程序阶段、符号串运算、文法四元组、推导与归约，以及乔姆斯基层次中的四类文法。",
+      "en": "A cleaned note on compiler phases, string operations, grammar tuples, derivation and reduction, and the Chomsky hierarchy."
+    },
+    "tags": [
+      "计算机专业课",
+      "编译原理"
+    ],
+    "path": "posts/compiler-principles-chat1.md"
+  },
+  {
     "slug": "welcome",
     "category": "ideas",
     "track": "other",
