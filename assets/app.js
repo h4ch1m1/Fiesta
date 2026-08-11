@@ -30,7 +30,7 @@ const copy = {
     latestTitle: "最近归档",
     latestNote: "",
     mapsTitle: "知识地图",
-    mapsNote: "选择左侧专题书脊展开路线；悬停或点击地图节点，查看它在学习路径中的位置。",
+    mapsNote: "选择一个专题，沿章节顺序查看学习路径。",
     all: "全部",
     tracksTitle: "分类",
     trackAll: "全部文章",
@@ -62,7 +62,7 @@ const copy = {
     latestTitle: "Recent Entries",
     latestNote: "New notes will appear here first, like index cards in an expanding cabinet.",
     mapsTitle: "Knowledge Maps",
-    mapsNote: "Select a topic spine to unfold a route; hover or click nodes to inspect their place in the path.",
+    mapsNote: "Choose a subject and follow its chapters as a reading path.",
     all: "All",
     tracksTitle: "Tracks",
     trackAll: "All posts",
@@ -166,8 +166,8 @@ const mapBooks = [
     title: { zh: "计算神经科学", en: "Computational Neuroscience" },
     spine: { zh: "Comp Neuro", en: "Comp Neuro" },
     summary: {
-      zh: "参考 Neuromatch Academy 的目录，把建模、统计学习、神经动力学、决策、强化学习和因果连成一张更大的技能树。",
-      en: "A larger skill tree inspired by the Neuromatch Academy syllabus, linking modeling, statistical learning, neural dynamics, decision-making, RL, and causality.",
+      zh: "参考 Neuromatch Academy 的目录，依次整理建模、统计学习、神经动力学、决策、强化学习与因果分析。",
+      en: "A chapter path inspired by the Neuromatch Academy syllabus, moving through modeling, statistical learning, neural dynamics, decision-making, RL, and causality.",
     },
     nodes: [
       { id: "model-types", x: 12, y: 50, title: { zh: "模型类型", en: "Model Types" }, note: { zh: "先区分描述性、机制性和规范性模型：what、how、why。", en: "Distinguish descriptive, mechanistic, and normative models: what, how, and why." } },
@@ -199,8 +199,8 @@ const mapBooks = [
     title: { zh: "类脑智能", en: "Brain-inspired Intelligence" },
     spine: { zh: "NeuroAI", en: "NeuroAI" },
     summary: {
-      zh: "把神经科学里的表征、预测、局部学习、脉冲网络和神经形态计算，组织成一棵通向类脑智能的成长树。",
-      en: "A growth tree from representation, prediction, local learning, spiking networks, and neuromorphic computing toward brain-inspired intelligence.",
+      zh: "从神经表征和局部学习出发，逐步进入预测编码、脉冲网络、神经形态计算与具身智能。",
+      en: "A chapter path from neural representation and local learning to predictive coding, spiking networks, neuromorphic computing, and embodied intelligence.",
     },
     nodes: [
       { id: "neural-coding", x: 12, y: 50, title: { zh: "神经编码", en: "Neural Coding" }, note: { zh: "从刺激、脉冲和群体活动里理解表征。", en: "Understand representation through stimuli, spikes, and population activity." } },
@@ -226,8 +226,8 @@ const mapBooks = [
     title: { zh: "CS 与实验能力", en: "CS and Lab Skills" },
     spine: { zh: "CS Lab", en: "CS Lab" },
     summary: {
-      zh: "参考 CS 自学指南和 CSAPP，把工具、编程、算法、系统、网络、数据库、编译、AI/ML 与复现实验能力连起来。",
-      en: "A CS DIY and CSAPP-inspired skill tree connecting tools, programming, algorithms, systems, networks, databases, compilers, AI/ML, and reproducible experiments.",
+      zh: "参考 CS 自学指南和 CSAPP，按工具、编程、算法、系统、网络、数据库、编译与实验复现组织。",
+      en: "A CS DIY and CSAPP-inspired chapter path across tools, programming, algorithms, systems, networks, databases, compilers, AI/ML, and reproducible experiments.",
     },
     nodes: [
       { id: "tools", x: 12, y: 50, title: { zh: "工具链", en: "Toolchain" }, note: { zh: "命令行、Git、编辑器、环境管理和调试。", en: "Shell, Git, editors, environment management, and debugging." } },
@@ -437,60 +437,60 @@ function renderPosts() {
 function renderMaps() {
   const book = activeBook();
   const node = activeNode(book);
-  const nodeById = Object.fromEntries(book.nodes.map((item) => [item.id, item]));
-  const edges = (book.edges || book.nodes.slice(1).map((item, index) => [book.nodes[index].id, item.id]))
-    .map(([from, to]) => [nodeById[from], nodeById[to]])
-    .filter(([from, to]) => from && to);
   $("#app").innerHTML = `
-    <section>
+    <section class="atlas-page">
       <div class="section-header">
         <h1 class="page-title">${t("mapsTitle")}</h1>
         <p class="section-note">${t("mapsNote")}</p>
       </div>
-      <div class="map-library">
-        <aside class="book-shelf" aria-label="${t("mapsTitle")}">
-          ${mapBooks.map((item) => `
+      <div class="atlas-layout">
+        <nav class="atlas-topics" aria-label="${t("mapsTitle")}">
+          ${mapBooks.map((item, index) => `
             <button
-              class="book-spine ${item.id === book.id ? "active" : ""}"
+              class="atlas-topic ${item.id === book.id ? "active" : ""}"
               type="button"
               onclick="selectMap('${item.id}')"
               aria-pressed="${item.id === book.id}"
             >
-              <span>${text(item.spine)}</span>
-              <small>${text(item.title)}</small>
+              <span class="atlas-topic-index">${String(index + 1).padStart(2, "0")}</span>
+              <span class="atlas-topic-copy">
+                <strong>${text(item.spine)}</strong>
+                <small>${text(item.title)}</small>
+              </span>
             </button>
           `).join("")}
-        </aside>
-        <div class="scroll-map">
-          <div class="construct-shape shape-one"></div>
-          <div class="construct-shape shape-two"></div>
-          <div class="construct-shape shape-three"></div>
-          <div class="map-title">
-            <p class="kicker">${text(book.spine)}</p>
-            <h2>${text(book.title)}</h2>
-            <p>${text(book.summary)}</p>
-          </div>
-          <svg class="map-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            ${edges.map(([from, to]) => `<line x1="${from.x}" y1="${from.y}" x2="${to.x}" y2="${to.y}" />`).join("")}
-          </svg>
-          ${book.nodes.map((item, index) => `
-            <button
-              class="map-node ${item.id === node.id ? "active" : ""}"
-              type="button"
-              style="left:${item.x}%; top:${item.y}%"
-              onclick="selectNode('${item.id}')"
-              aria-label="${text(item.title)}"
-            >
-              <span class="node-dot">${index + 1}</span>
-              <strong class="node-label">${text(item.title)}</strong>
-            </button>
-          `).join("")}
-          <aside class="node-card">
-            <p class="kicker">${t("currentNode")}</p>
-            <h3>${text(node.title)}</h3>
-            <p>${text(node.note)}</p>
-          </aside>
-        </div>
+        </nav>
+        <article class="route-panel">
+          <header class="route-header">
+            <div>
+              <p class="kicker">${text(book.spine)}</p>
+              <h2>${text(book.title)}</h2>
+              <p>${text(book.summary)}</p>
+            </div>
+            <div class="route-mark" aria-hidden="true">
+              <span></span>
+            </div>
+          </header>
+          <ol class="route-steps">
+            ${book.nodes.map((item, index) => `
+              <li class="route-step-item ${item.id === node.id ? "active" : ""}">
+                <button
+                  class="route-step"
+                  type="button"
+                  onclick="selectNode('${item.id}')"
+                  aria-expanded="${item.id === node.id}"
+                >
+                  <span class="route-step-index">${String(index + 1).padStart(2, "0")}</span>
+                  <span class="route-step-copy">
+                    <strong>${text(item.title)}</strong>
+                    <small>${text(item.note)}</small>
+                  </span>
+                  <span class="route-step-mark" aria-hidden="true"></span>
+                </button>
+              </li>
+            `).join("")}
+          </ol>
+        </article>
       </div>
     </section>
   `;
